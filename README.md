@@ -1,8 +1,11 @@
-# AI-System-South-East-University-Helpdesk
+# AI-System-Apartment-Building-Assistant
 
-An AI helpdesk assistant for **South East University IT Services**, a made-up university.
-It answers common IT questions (Wi-Fi, passwords, printing, VPN, email, opening hours).
-All data in this project is invented. No real people or real student data are used.
+**Sohei** (from **So**uth **Hei**ghts) is an AI assistant for residents of
+**South Heights Apartments**, a made-up apartment building.
+It answers everyday questions: bin day, parking, laundry room, gym hours, moving in,
+booking the lift, noise rules, pets, and how to report a repair.
+All data in this project is invented. No real people, addresses or resident data are used.
+The assistant only gives information. It does not make decisions about residents.
 
 Final project for **SAM10 – Systems Administration and Maintenance**.
 
@@ -30,5 +33,21 @@ This project is a reskin of **LibreChat**. I did not write LibreChat; I changed 
 - **Monitoring:** Amazon CloudWatch, alerts by Amazon SNS email
 - **Audit:** AWS CloudTrail
 
-Date	| What I did	
-6 Nov 2026	| Root MFA, budget, IAM user and role, CloudTrail
+## Security note
+
+No passwords, API keys or access keys are stored in this repository or its history.
+All secrets live in AWS Parameter Store.
+
+## Work log
+
+I worked alone on this project.
+
+| Date | What I did |
+| --- | --- |
+| 6 Nov 2026 | AWS account set up: root MFA, budget alert, IAM user with MFA, admin role, CLI profile, CloudTrail, tags. Created this repository.
+
+## Use of AI tools
+
+I used Claude (Anthropic) to help plan the project, explain AWS steps, and help write
+configuration and scripts. I checked its output by testing each step myself and
+reading the AWS and LibreChat documentation.
