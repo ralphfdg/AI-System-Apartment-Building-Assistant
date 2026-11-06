@@ -1,0 +1,202 @@
+# Sohei – LibreChat configuration (starter)
+# Base: LibreChat v0.8.9-rc1 (needed for interface.theme)
+# Docs: https://www.librechat.ai/docs/configuration/librechat_yaml
+#
+# Design: "Bespoke Minimalism"
+#   - Plenty of whitespace, clean sans-serif (Inter, bundled with LibreChat)
+#   - Razor-sharp structure: 2-4px corners, 1px hairlines, almost no shadow
+#   - Palette:
+#       Cream   #F5F0E6  (245 240 230)  page background
+#       Sand    #C8B48A  (200 180 138)  hairlines, highlights, dark-mode accent
+#       Sage    #7F8C6A  (127 140 106)  secondary accent, dark-mode buttons
+#       Forest  #1E3B2F  ( 30  59  47)  text, primary buttons, dark-mode base
+#     Extra shades (added for contrast and depth):
+#       Linen   #EDE6D8  (237 230 216)  sidebar, user message
+#       Stone   #E3DAC8  (227 218 200)  hover, tertiary surface
+#       Hair    #DDD3C0  (221 211 192)  light borders
+#       Moss    #4A5E52  ( 74  94  82)  secondary text
+#       Olive   #5F6B4F  ( 95 107  79)  tertiary text (passes 4.5:1 on cream)
+#       Pine    #2C5242  ( 44  82  66)  forest hover
+#       Night   #152820  ( 21  40  32)  dark-mode page background
+
+version: 1.3.18
+cache: true
+
+interface:
+  customWelcome: "Hi, I'm Sohei. Ask me anything about living at South Heights Apartments."
+
+  theme:
+    version: 1
+    name: sohei-bespoke-minimalism
+    modes:
+      light:
+        colors:
+          # Surfaces
+          rgb-surface-primary: '245 240 230'
+          rgb-surface-primary-alt: '245 240 230'
+          rgb-surface-secondary: '237 230 216'
+          rgb-surface-secondary-alt: '237 230 216'
+          rgb-surface-tertiary: '227 218 200'
+          rgb-surface-tertiary-alt: '227 218 200'
+          rgb-surface-chat: '245 240 230'
+          rgb-surface-sidebar: '237 230 216'
+          rgb-surface-user-message: '237 230 216'
+          rgb-surface-composer: '245 240 230'
+          rgb-surface-dialog: '245 240 230'
+          rgb-surface-menu: '245 240 230'
+          rgb-surface-popover: '245 240 230'
+          rgb-surface-hover: '227 218 200'
+          rgb-surface-active: '227 218 200'
+          rgb-surface-nav-hover: '227 218 200'
+          rgb-surface-nav-selected: '221 211 192'
+          rgb-page-canvas: '245 240 230'
+          # Text
+          rgb-text-primary: '30 59 47'
+          rgb-text-secondary: '74 94 82'
+          rgb-text-tertiary: '95 107 79'
+          rgb-text-inverted: '245 240 230'
+          # Borders: thin, warm hairlines
+          rgb-border-light: '221 211 192'
+          rgb-border-medium: '200 180 138'
+          rgb-border-heavy: '127 140 106'
+          rgb-border-xheavy: '30 59 47'
+          rgb-border-control: '127 140 106'
+          # Accent and actions
+          rgb-accent-primary: '30 59 47'
+          rgb-accent-primary-hover: '44 82 66'
+          rgb-ring-primary: '30 59 47'
+          rgb-surface-submit: '30 59 47'
+          rgb-surface-submit-hover: '44 82 66'
+          rgb-button-primary: '30 59 47'
+          rgb-button-primary-hover: '44 82 66'
+          rgb-surface-inverted: '30 59 47'
+          rgb-surface-inverted-hover: '44 82 66'
+          rgb-link: '44 82 66'
+          rgb-link-hover: '30 59 47'
+          rgb-avatar-fill: '200 180 138'
+          rgb-avatar-text: '30 59 47'
+        appearance:
+          # Razor-sharp shape
+          controlRadius: '2px'
+          roundControlRadius: '4px'
+          surfaceRadius: '4px'
+          largeSurfaceRadius: '6px'
+          menuRadius: '4px'
+          menuPanelRadius: '4px'
+          popoverRadius: '4px'
+          composerActionRadius: '2px'
+          authControlRadius: '2px'
+          tooltipRadius: '2px'
+          tabRadius: '2px'
+          checkboxRadius: '2px'
+          radiusSm: '2px'
+          radiusMd: '2px'
+          radiusLg: '4px'
+          radiusXl: '4px'
+          radius2xl: '6px'
+          radius3xl: '8px'
+          # Whitespace
+          spaceNormal: '1rem'
+          dialogPaddingX: '2rem'
+          dialogHeaderGap: '0.5rem'
+          tableCellSpaceY: '1rem'
+          # Lines instead of shadows
+          dialogStroke: '1px'
+          tableRowStroke: '1px'
+          fieldFocusStyle: 'border'
+          # Typography: clean sans-serif, calm weights
+          fontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          displayFontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          controlFontWeight: '500'
+          dialogTitleFontWeight: '500'
+          # Almost flat
+          shadowSm: '0 1px 0 0 rgb(30 59 47 / 0.06)'
+          shadowMd: '0 2px 4px -2px rgb(30 59 47 / 0.10)'
+          shadowLg: '0 8px 24px -12px rgb(30 59 47 / 0.18)'
+          menuShadow: '0 8px 24px -12px rgb(30 59 47 / 0.18)'
+          elevationSurface: '0 8px 24px -12px rgb(30 59 47 / 0.18)'
+      dark:
+        colors:
+          # Surfaces: deep forest
+          rgb-surface-primary: '21 40 32'
+          rgb-surface-primary-alt: '21 40 32'
+          rgb-surface-secondary: '30 59 47'
+          rgb-surface-secondary-alt: '30 59 47'
+          rgb-surface-tertiary: '40 74 59'
+          rgb-surface-tertiary-alt: '40 74 59'
+          rgb-surface-chat: '21 40 32'
+          rgb-surface-sidebar: '18 34 27'
+          rgb-surface-user-message: '30 59 47'
+          rgb-surface-composer: '30 59 47'
+          rgb-surface-dialog: '21 40 32'
+          rgb-surface-menu: '30 59 47'
+          rgb-surface-popover: '30 59 47'
+          rgb-surface-hover: '40 74 59'
+          rgb-surface-active: '40 74 59'
+          rgb-surface-nav-hover: '30 59 47'
+          rgb-surface-nav-selected: '40 74 59'
+          rgb-page-canvas: '21 40 32'
+          # Text
+          rgb-text-primary: '245 240 230'
+          rgb-text-secondary: '214 205 186'
+          rgb-text-tertiary: '200 180 138'
+          rgb-text-inverted: '30 59 47'
+          # Borders
+          rgb-border-light: '44 72 58'
+          rgb-border-medium: '63 98 80'
+          rgb-border-heavy: '127 140 106'
+          rgb-border-xheavy: '200 180 138'
+          rgb-border-control: '127 140 106'
+          # Accent and actions: sand and cream
+          rgb-accent-primary: '200 180 138'
+          rgb-accent-primary-hover: '214 197 160'
+          rgb-ring-primary: '200 180 138'
+          rgb-surface-submit: '200 180 138'
+          rgb-surface-submit-hover: '214 197 160'
+          rgb-button-primary: '245 240 230'
+          rgb-button-primary-hover: '227 218 200'
+          rgb-surface-inverted: '245 240 230'
+          rgb-surface-inverted-hover: '227 218 200'
+          rgb-link: '200 180 138'
+          rgb-link-hover: '214 197 160'
+          rgb-avatar-fill: '127 140 106'
+          rgb-avatar-text: '245 240 230'
+        appearance:
+          controlRadius: '2px'
+          roundControlRadius: '4px'
+          surfaceRadius: '4px'
+          largeSurfaceRadius: '6px'
+          menuRadius: '4px'
+          menuPanelRadius: '4px'
+          popoverRadius: '4px'
+          composerActionRadius: '2px'
+          authControlRadius: '2px'
+          tooltipRadius: '2px'
+          tabRadius: '2px'
+          checkboxRadius: '2px'
+          radiusSm: '2px'
+          radiusMd: '2px'
+          radiusLg: '4px'
+          radiusXl: '4px'
+          radius2xl: '6px'
+          radius3xl: '8px'
+          spaceNormal: '1rem'
+          dialogPaddingX: '2rem'
+          dialogHeaderGap: '0.5rem'
+          tableCellSpaceY: '1rem'
+          dialogStroke: '1px'
+          tableRowStroke: '1px'
+          fieldFocusStyle: 'border'
+          fontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          displayFontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          controlFontWeight: '500'
+          dialogTitleFontWeight: '500'
+          shadowSm: '0 1px 0 0 rgb(0 0 0 / 0.30)'
+          shadowMd: '0 2px 4px -2px rgb(0 0 0 / 0.40)'
+          shadowLg: '0 8px 24px -12px rgb(0 0 0 / 0.55)'
+          menuShadow: '0 8px 24px -12px rgb(0 0 0 / 0.55)'
+          elevationSurface: '0 8px 24px -12px rgb(0 0 0 / 0.55)'
+
+# The Sohei model spec (Gemini + building handbook + rules) is added in Part B, step 4.
+# modelSpecs:
+#   ...

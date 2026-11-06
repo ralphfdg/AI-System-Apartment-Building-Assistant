@@ -45,6 +45,7 @@ I worked alone on this project.
 | Date | What I did |
 | --- | --- |
 | 6 Nov 2026 | AWS account set up: root MFA, budget alert, IAM user with MFA, admin role, CLI profile, CloudTrail, tags. Created this repository.
+| 6 Nov 2026 | Ran LibreChat v0.8.9-rc1 locally in Docker with its original look. Connected Gemini and tested a question. Took screenshot E-05. |
 
 ## Use of AI tools
 

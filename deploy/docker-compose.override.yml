@@ -1,0 +1,21 @@
+# Sohei – local Docker override for LibreChat
+# Copy this file to ../LibreChat/docker-compose.override.yml (LibreChat reads it automatically).
+# It pins the LibreChat version and mounts our config and branding over the originals.
+# Paths are relative to the LibreChat folder.
+
+services:
+  api:
+    # Pin the version (interface.theme needs v0.8.9-rc1 or newer).
+    # Claude Code: confirm this tag can be pulled; see CLAUDE.md for the fallback.
+    image: registry.librechat.ai/librechat-ai/librechat:v0.8.9-rc1
+    volumes:
+      - type: bind
+        source: ../AI-System-Apartment-Building-Assistant/config/librechat.yaml
+        target: /app/librechat.yaml
+      # Branding (replaces LibreChat's logo and icons inside the built app)
+      - ../AI-System-Apartment-Building-Assistant/config/branding/sohei-app-icon.svg:/app/client/dist/assets/logo.svg
+      - ../AI-System-Apartment-Building-Assistant/config/branding/favicon-16x16.png:/app/client/dist/assets/favicon-16x16.png
+      - ../AI-System-Apartment-Building-Assistant/config/branding/favicon-32x32.png:/app/client/dist/assets/favicon-32x32.png
+      - ../AI-System-Apartment-Building-Assistant/config/branding/apple-touch-icon-180x180.png:/app/client/dist/assets/apple-touch-icon-180x180.png
+      - ../AI-System-Apartment-Building-Assistant/config/branding/icon-192x192.png:/app/client/dist/assets/icon-192x192.png
+      - ../AI-System-Apartment-Building-Assistant/config/branding/maskable-icon.png:/app/client/dist/assets/maskable-icon.png
