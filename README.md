@@ -17,11 +17,11 @@ This project is a reskin of **LibreChat**. I did not write LibreChat; I changed 
 - **Source:** https://github.com/LibreChat-AI/LibreChat
 - **Author:** Danny Avila and the LibreChat contributors
 - **Licence:** MIT – https://github.com/LibreChat-AI/LibreChat/blob/main/LICENSE
-- **Version used:** _to be added_
+- **Version used:** v0.8.9-rc1, image `registry.librechat.ai/librechat-ai/librechat:v0.8.9-rc1` (digest `sha256:26e3290c82002fd5e4d5e0fd8f7de4d2f2a430f12049d82190d1e4a80f2a3cb2`)
 
 ## AI model
 
-- **Model:** Google Gemini (free tier), called through its API from outside AWS.
+- **Model:** Google Gemini `gemini-3.5-flash-lite` (free tier), called through its API from outside AWS.
 - Only invented data is sent to the model.
 
 ## How it runs (summary)
@@ -46,6 +46,7 @@ I worked alone on this project.
 | --- | --- |
 | 6 Nov 2026 | AWS account set up: root MFA, budget alert, IAM user with MFA, admin role, CLI profile, CloudTrail, tags. Created this repository.
 | 6 Nov 2026 | Ran LibreChat v0.8.9-rc1 locally in Docker with its original look. Connected Gemini and tested a question. Took screenshot E-05. |
+| 6 Nov 2026 | Reskinned LibreChat as Sohei: theme, logo, footer, building handbook and Gemini model spec. Tested answers and refusals. Took screenshot E-01. |
 
 ## Use of AI tools
 

@@ -3,7 +3,7 @@
 # Docs: https://www.librechat.ai/docs/configuration/librechat_yaml
 #
 # Design: "Bespoke Minimalism"
-#   - Plenty of whitespace, clean sans-serif (Inter, bundled with LibreChat)
+#   - Plenty of whitespace, serif type (Times New Roman, so the digits in 000 read clearly)
 #   - Razor-sharp structure: 2-4px corners, 1px hairlines, almost no shadow
 #   - Palette:
 #       Cream   #F5F0E6  (245 240 230)  page background
@@ -104,9 +104,9 @@ interface:
           dialogStroke: '1px'
           tableRowStroke: '1px'
           fieldFocusStyle: 'border'
-          # Typography: clean sans-serif, calm weights
-          fontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
-          displayFontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          # Typography: serif, calm weights
+          fontFamily: '"Times New Roman", Times, serif'
+          displayFontFamily: '"Times New Roman", Times, serif'
           controlFontWeight: '500'
           dialogTitleFontWeight: '500'
           # Almost flat
@@ -187,8 +187,8 @@ interface:
           dialogStroke: '1px'
           tableRowStroke: '1px'
           fieldFocusStyle: 'border'
-          fontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
-          displayFontFamily: 'Inter, "Helvetica Neue", Arial, sans-serif'
+          fontFamily: '"Times New Roman", Times, serif'
+          displayFontFamily: '"Times New Roman", Times, serif'
           controlFontWeight: '500'
           dialogTitleFontWeight: '500'
           shadowSm: '0 1px 0 0 rgb(0 0 0 / 0.30)'
@@ -197,6 +197,86 @@ interface:
           menuShadow: '0 8px 24px -12px rgb(0 0 0 / 0.55)'
           elevationSurface: '0 8px 24px -12px rgb(0 0 0 / 0.55)'
 
-# The Sohei model spec (Gemini + building handbook + rules) is added in Part B, step 4.
-# modelSpecs:
-#   ...
+# Sohei model spec: Gemini, the rules, and a copy of config/building-handbook.md.
+# If the handbook changes, update the copy below too.
+modelSpecs:
+  enforce: true
+  prioritize: true
+  list:
+    - name: sohei
+      label: Sohei
+      default: true
+      iconURL: /assets/logo.svg
+      preset:
+        endpoint: google
+        model: gemini-3.5-flash-lite
+        modelLabel: Sohei
+        promptPrefix: |
+          You are Sohei, the information assistant for residents of South Heights Apartments, a made-up building.
+
+          Rules:
+          - Answer only from the handbook below, and only about living at South Heights Apartments. Keep answers short and friendly.
+          - If you are unsure, or the handbook does not cover something, say so and give the building manager's contact details.
+          - You only give information. Never decide complaints or disputes, and never approve requests. Send those to the building manager.
+          - Never share anything about residents, such as who lives in which unit. Politely refuse.
+          - For emergencies, tell people to call 000.
+
+          Handbook:
+
+          # South Heights Apartments – Resident Handbook
+
+          South Heights Apartments is a made-up building. Everything in this handbook is invented.
+
+          ## Bins
+
+          - General waste: put bins out on Tuesday night.
+          - Recycling: put bins out every second Thursday night.
+
+          ## Parking
+
+          - Each apartment has one parking bay.
+          - Visitor bays can be used for up to 4 hours, between 8 am and 8 pm.
+
+          ## Laundry room
+
+          - Level 1.
+          - Open 7 am to 9 pm.
+
+          ## Gym
+
+          - Level 2.
+          - Open 5 am to 10 pm.
+
+          ## Pool
+
+          - Level 2.
+          - Open 6 am to 9 pm.
+
+          ## Moving in and out, and booking the lift
+
+          - Book the lift at least 48 hours ahead with the building manager.
+          - Moves can happen Monday to Saturday, 9 am to 4 pm.
+
+          ## Noise
+
+          - Quiet hours are 10 pm to 7 am.
+
+          ## Pets
+
+          - Pets are allowed with a written request to the building manager.
+          - Pets must be kept on a lead in shared areas.
+
+          ## Reporting a repair
+
+          - Report repairs to the building manager by email or phone.
+          - Report urgent repairs by phone.
+
+          ## Building manager
+
+          - Hours: weekdays, 9 am to 5 pm.
+          - Email: manager@southheights.example
+          - Phone: (02) 5550 0142
+
+          ## Emergencies
+
+          - Call 000.

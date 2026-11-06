@@ -8,6 +8,8 @@ services:
     # Pin the version (interface.theme needs v0.8.9-rc1 or newer).
     # Claude Code: confirm this tag can be pulled; see CLAUDE.md for the fallback.
     image: registry.librechat.ai/librechat-ai/librechat:v0.8.9-rc1
+    environment:
+      - "CUSTOM_FOOTER=South Heights Apartments · Emergencies: call 000"
     volumes:
       - type: bind
         source: ../AI-System-Apartment-Building-Assistant/config/librechat.yaml
@@ -19,3 +21,7 @@ services:
       - ../AI-System-Apartment-Building-Assistant/config/branding/apple-touch-icon-180x180.png:/app/client/dist/assets/apple-touch-icon-180x180.png
       - ../AI-System-Apartment-Building-Assistant/config/branding/icon-192x192.png:/app/client/dist/assets/icon-192x192.png
       - ../AI-System-Apartment-Building-Assistant/config/branding/maskable-icon.png:/app/client/dist/assets/maskable-icon.png
+
+  # Not used by Sohei. It only starts with: docker compose --profile admin up -d
+  admin-panel:
+    profiles: ["admin"]
