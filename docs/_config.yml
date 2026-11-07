@@ -1,0 +1,27 @@
+# Sohei project website (Jekyll on GitHub Pages, source folder: docs/)
+title: Sohei
+description: How a reskinned LibreChat assistant for a made-up apartment building was deployed, watched, backed up and secured on AWS.
+baseurl: /AI-System-Apartment-Building-Assistant   # for a local preview run: jekyll serve --baseurl ""
+url: ""
+
+student_name: Ralph De Guzman
+student_id: 23-1140-701
+course: SAM10 Systems Administration and Maintenance
+
+# Paste the YouTube video ID here (the part after watch?v=). Empty = a placeholder box shows.
+video_id: ""
+
+live_url: https://d3jo5rdo8zr7zb.cloudfront.net
+repo_url: https://github.com/ralphfdg/AI-System-Apartment-Building-Assistant
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+
+defaults:
+  - scope: { path: "" }
+    values: { layout: default }
+
+exclude:
+  - images/README.md

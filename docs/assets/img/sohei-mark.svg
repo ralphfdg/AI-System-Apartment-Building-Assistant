@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sohei">
+  <title>Sohei</title>
+  <!-- Building that is also a chat bubble: tail at bottom-left -->
+  <path d="M16 6H48V50H24L16 58Z" fill="#1E3B2F"/>
+  <!-- Windows: 3 x 3 grid, top-right window is the AI spark -->
+  <g fill="#F5F0E6">
+    <rect x="21" y="12" width="6" height="6"/>
+    <rect x="29" y="12" width="6" height="6"/>
+    <rect x="21" y="21" width="6" height="6"/>
+    <rect x="29" y="21" width="6" height="6"/>
+    <rect x="37" y="21" width="6" height="6"/>
+    <rect x="21" y="30" width="6" height="6"/>
+    <rect x="37" y="30" width="6" height="6"/>
+  </g>
+  <!-- AI spark -->
+  <path d="M40 10.2L41.3 13.7L44.8 15L41.3 16.3L40 19.8L38.7 16.3L35.2 15L38.7 13.7Z" fill="#C8B48A"/>
+  <!-- Door -->
+  <rect x="29" y="38" width="6" height="12" fill="#7F8C6A"/>
+</svg>

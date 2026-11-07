@@ -1,0 +1,15 @@
+{%- if site.video_id and site.video_id != "" -%}
+<figure class="video">
+  <div class="ratio ratio-16x9">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ site.video_id }}" title="Sohei project video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+</figure>
+{%- else -%}
+<figure class="video plate is-missing">
+  <span class="plate-stamp">Video</span>
+  <div class="plate-empty">
+    <p><b>Video goes here</b></p>
+    <p>Add the YouTube ID as <code>video_id</code> in <code>_config.yml</code></p>
+  </div>
+</figure>
+{%- endif -%}

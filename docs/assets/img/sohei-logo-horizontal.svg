@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" role="img" aria-label="Sohei, South Heights Apartments">
+  <title>Sohei — South Heights Apartments</title>
+  <g transform="translate(8 8)">
+    <path d="M16 6H48V50H24L16 58Z" fill="#1E3B2F"/>
+    <g fill="#F5F0E6">
+      <rect x="21" y="12" width="6" height="6"/><rect x="29" y="12" width="6" height="6"/>
+      <rect x="21" y="21" width="6" height="6"/><rect x="29" y="21" width="6" height="6"/><rect x="37" y="21" width="6" height="6"/>
+      <rect x="21" y="30" width="6" height="6"/><rect x="37" y="30" width="6" height="6"/>
+    </g>
+    <path d="M40 10.2L41.3 13.7L44.8 15L41.3 16.3L40 19.8L38.7 16.3L35.2 15L38.7 13.7Z" fill="#C8B48A"/>
+    <rect x="29" y="38" width="6" height="12" fill="#7F8C6A"/>
+  </g>
+  <rect x="76" y="14" width="1" height="44" fill="#C8B48A"/>
+  <text x="92" y="44" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.5" fill="#1E3B2F">Sohei</text>
+  <text x="93" y="60" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="500" letter-spacing="2.4" fill="#7F8C6A">SOUTH HEIGHTS APARTMENTS</text>
+</svg>

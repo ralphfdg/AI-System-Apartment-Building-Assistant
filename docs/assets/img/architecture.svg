@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 624" role="img" aria-labelledby="t d">
+  <title id="t">Sohei architecture on AWS</title>
+  <desc id="d">A resident's browser reaches CloudFront over HTTPS. CloudFront forwards to one EC2 server, sohei-app, in ap-southeast-2, which only accepts port 80 from CloudFront. On the server, nginx passes requests to LibreChat, which uses MongoDB and Meilisearch and calls the Google Gemini API outside AWS. Around it: S3 for the handbook and backups, Parameter Store for secrets, CloudWatch for logs, metrics, dashboard and alarms, SNS for alert emails, a Lambda health check run by EventBridge Scheduler, and CloudTrail for the audit trail.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1E3B2F"/></marker>
+    <style>
+      .bx{fill:#F5F0E6;stroke:#1E3B2F;stroke-width:1}
+      .in{fill:#EDE6D8;stroke:#1E3B2F;stroke-width:1}
+      .zone{fill:none;stroke:#5F6B4F;stroke-width:1;stroke-dasharray:6 4}
+      .sg{fill:none;stroke:#7F8C6A;stroke-width:1}
+      .ln{stroke:#1E3B2F;stroke-width:1.25;fill:none;marker-end:url(#a)}
+      .h{font:400 19px Tinos,'Times New Roman',Times,serif;fill:#1E3B2F}
+      .s{font:400 13px Tinos,'Times New Roman',Times,serif;fill:#4A5E52}
+      .m{font:400 12px Cousine,'Courier New',monospace;fill:#4A5E52}
+      .z{font:700 12px Cousine,'Courier New',monospace;fill:#5F6B4F;letter-spacing:.06em}
+      .tag{font:400 12px Tinos,'Times New Roman',Times,serif;fill:#1E3B2F}
+    </style>
+  </defs>
+
+  <!-- Visitor and edge -->
+  <rect class="bx" x="16" y="96" width="152" height="72"/>
+  <text class="h" x="32" y="126">Resident</text><text class="s" x="32" y="148">web browser</text>
+  <path class="ln" d="M168 132H196"/>
+  <rect class="bx" x="200" y="96" width="160" height="72"/>
+  <text class="h" x="216" y="126">CloudFront</text><text class="m" x="216" y="148">sohei-cdn · HTTPS</text>
+  <path class="ln" d="M360 132H444"/>
+  <text class="tag" x="370" y="122">HTTP :80</text>
+
+  <!-- Region -->
+  <rect class="zone" x="392" y="24" width="488" height="592"/>
+  <text class="z" x="408" y="46">AWS · ap-southeast-2 (Sydney)</text>
+  <rect class="sg" x="416" y="60" width="448" height="200"/>
+  <text class="m" x="428" y="78">sohei-web-sg · port 80 from CloudFront only, no SSH</text>
+  <rect class="bx" x="432" y="88" width="416" height="160"/>
+  <text class="m" x="444" y="106">EC2 sohei-app · t3.medium · Docker</text>
+  <rect class="in" x="448" y="116" width="104" height="40"/><text class="h" x="466" y="142">nginx</text>
+  <path class="ln" d="M552 136H572"/>
+  <rect class="in" x="576" y="116" width="136" height="40"/><text class="h" x="596" y="142">LibreChat</text>
+  <path class="ln" d="M620 156V180"/><path class="ln" d="M690 156V180"/>
+  <rect class="in" x="576" y="184" width="112" height="40"/><text class="h" x="588" y="210">MongoDB</text>
+  <rect class="in" x="704" y="184" width="128" height="40"/><text class="h" x="716" y="210">Meilisearch</text>
+
+  <!-- Outside AWS -->
+  <path class="ln" d="M712 136H900"/>
+  <text class="tag" x="890" y="122" text-anchor="end">question + handbook</text>
+  <rect class="bx" x="904" y="96" width="120" height="72"/>
+  <text class="h" x="920" y="126">Gemini API</text><text class="s" x="920" y="148">Google, outside AWS</text>
+
+  <!-- Supporting services -->
+  <path class="ln" d="M500 248V296"/><text class="tag" x="506" y="278">backups</text>
+  <rect class="bx" x="416" y="300" width="200" height="72"/>
+  <text class="h" x="432" y="328">S3</text><text class="m" x="456" y="328">sohei-909927</text>
+  <text class="s" x="432" y="352">handbook, app files, backups</text>
+
+  <path class="ln" d="M760 296V252"/><text class="tag" x="766" y="278">secrets at start-up</text>
+  <rect class="bx" x="648" y="300" width="216" height="72"/>
+  <text class="h" x="664" y="328">Parameter Store</text>
+  <text class="m" x="664" y="352">/sohei/ · encrypted</text>
+
+  <path class="ln" d="M632 248V400"/><text class="tag" x="638" y="392">logs, metrics</text>
+  <rect class="bx" x="416" y="404" width="448" height="96"/>
+  <text class="h" x="432" y="432">CloudWatch</text>
+  <text class="s" x="432" y="456">logs /sohei/app, /sohei/requests, /sohei/ops · memory and disk</text>
+  <text class="s" x="432" y="478">dashboard Sohei · 5 alarms (CPU, status, disk, memory, health)</text>
+
+  <path class="ln" d="M500 500V528"/>
+  <rect class="bx" x="416" y="532" width="200" height="72"/>
+  <text class="h" x="432" y="560">SNS</text><text class="m" x="468" y="560">sohei-alerts</text>
+  <text class="s" x="432" y="584">email on ALARM and on OK</text>
+
+  <path class="ln" d="M760 532V504"/>
+  <rect class="bx" x="648" y="532" width="216" height="80"/>
+  <text class="h" x="664" y="558">Lambda health check</text>
+  <text class="s" x="664" y="580">EventBridge Scheduler, every 15 min</text>
+  <text class="s" x="664" y="600">calls the live HTTPS link</text>
+
+  <!-- Outside the region box -->
+  <path class="ln" d="M416 568H364"/>
+  <rect class="bx" x="200" y="532" width="160" height="72"/>
+  <text class="h" x="216" y="560">Email</text><text class="s" x="216" y="584">alerts reach the owner</text>
+
+  <rect class="bx" x="16" y="300" width="344" height="72"/>
+  <text class="h" x="32" y="328">CloudTrail</text>
+  <text class="s" x="32" y="352">records every action taken in the AWS account</text>
+
+</svg>

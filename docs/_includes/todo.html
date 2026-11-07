@@ -1,0 +1,1 @@
+{%- comment -%} Visible to-do marker, always one line so it works inside table cells. Usage: {% include todo.html text="Restore time – after Day 2 Part B" %} {%- endcomment -%}{%- capture todo_icon -%}{% include icon.html name="box" %}{%- endcapture -%}<span class="todo">{{ todo_icon | strip_newlines }}<span><b>To do</b> {{ include.text }}</span></span>

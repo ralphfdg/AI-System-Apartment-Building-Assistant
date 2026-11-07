@@ -1,0 +1,42 @@
+# The building directory: one level per page, in reading order.
+# "level" is what the lift indicator and the directory board show.
+- level: G
+  title: Home
+  url: /
+  evidence: Video
+- level: "1"
+  title: Infrastructure
+  url: /infrastructure.html
+  evidence: E-18
+- level: "2"
+  title: Sohei & system card
+  url: /system.html
+  evidence: E-01 · E-02 · E-05
+- level: "3"
+  title: Baseline
+  url: /baseline.html
+  evidence: ""
+- level: "4"
+  title: Well-Architected
+  url: /well-architected.html
+  evidence: E-17
+- level: "5"
+  title: Monitoring, backup & security
+  url: /operations.html
+  evidence: E-06 – E-13
+- level: "6"
+  title: Automation & incident
+  url: /automation-incident.html
+  evidence: E-14 · E-15
+- level: "7"
+  title: Results
+  url: /results.html
+  evidence: E-03 · E-04 · E-16
+- level: "8"
+  title: Next steps
+  url: /next.html
+  evidence: ""
+- level: "9"
+  title: Declaration
+  url: /declaration.html
+  evidence: ""

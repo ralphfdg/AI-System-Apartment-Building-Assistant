@@ -1,0 +1,12 @@
+{%- comment -%} One stroke family for every icon: 1.5px, square caps. Usage: {% include icon.html name="up" %} {%- endcomment -%}
+<svg class="icon icon-{{ include.name }}" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true" focusable="false">
+{%- case include.name -%}
+{%- when "chevron" -%}<path d="M3.5 6l4.5 4.5L12.5 6"/>
+{%- when "external" -%}<path d="M6 3.5H3.5v9h9V10M9 3.5h3.5V7M12.5 3.5L7 9"/>
+{%- when "up" -%}<path d="M8 13V3.5M3.5 8L8 3.5 12.5 8"/>
+{%- when "down" -%}<path d="M8 3v9.5M3.5 8L8 12.5 12.5 8"/>
+{%- when "menu" -%}<path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/>
+{%- when "tick" -%}<path d="M1.5 1.5h13v13h-13z" stroke-width="1"/><path d="M4.5 8.2l2.4 2.4 4.8-5"/>
+{%- when "box" -%}<path d="M1.5 1.5h13v13h-13z" stroke-width="1" stroke-dasharray="2 1.5"/>
+{%- endcase -%}
+</svg>

@@ -1,0 +1,42 @@
+# One window of the building on the home page per project part.
+# When a part is finished: set done: true and add the date. The window lights up.
+- part: Account made safe
+  stage: Day 1 · Part A
+  done: true
+  date: 6 Nov 2026
+- part: LibreChat reskinned as Sohei
+  stage: Day 1 · Part B
+  done: true
+  date: 6 Nov 2026
+- part: Deployed to AWS with HTTPS
+  stage: Day 1 · Part C
+  done: true
+  date: 7 Nov 2026
+- part: Logging and two automations
+  stage: Day 1 · Part D
+  done: true
+  date: 7 Nov 2026
+- part: Dashboard, alarms, a real alert
+  stage: Day 2 · Part A
+  done: true
+  date: 7 Nov 2026
+- part: Restore test
+  stage: Day 2 · Part B
+  done: false
+  date: ""
+- part: Disk-full fault and runbook
+  stage: Day 2 · Part C
+  done: false
+  date: ""
+- part: Quality, security, Well-Architected
+  stage: Day 2 · Part D
+  done: false
+  date: ""
+- part: This website
+  stage: Day 3
+  done: false
+  date: ""
+- part: Video and hand-in
+  stage: Day 3
+  done: false
+  date: ""

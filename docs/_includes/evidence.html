@@ -1,0 +1,20 @@
+{%- comment -%}
+Evidence plate. Usage:
+  {% include evidence.html id="E-06" file="E-06-dashboard.png" caption="The Sohei dashboard" %}
+If docs/images/<file> exists, the screenshot shows. If not, a placeholder names the file to save. Pages never need editing.
+{%- endcomment -%}
+{%- assign evidence_path = "/images/" | append: include.file -%}
+{%- assign evidence_found = site.static_files | where: "path", evidence_path | first -%}
+<figure class="plate{% unless evidence_found %} is-missing{% endunless %}{% if include.half %} plate-half{% endif %}" id="{{ include.id | downcase }}{% if include.n %}-{{ include.n }}{% endif %}">
+  <span class="plate-stamp">{{ include.id }}</span>
+  <span class="reg reg-tl" aria-hidden="true"></span><span class="reg reg-tr" aria-hidden="true"></span><span class="reg reg-bl" aria-hidden="true"></span><span class="reg reg-br" aria-hidden="true"></span>
+  {%- if evidence_found %}
+  <a href="{{ evidence_path | relative_url }}" class="plate-link"><img src="{{ evidence_path | relative_url }}" alt="{{ include.id }}: {{ include.caption }}" loading="lazy"></a>
+  {%- else %}
+  <div class="plate-empty">
+    <p><b>Screenshot needed</b></p>
+    <p>Save it as <code>images/{{ include.file }}</code></p>
+  </div>
+  {%- endif %}
+  <figcaption><span class="plate-id">{{ include.id }}</span> {{ include.caption }}</figcaption>
+</figure>
