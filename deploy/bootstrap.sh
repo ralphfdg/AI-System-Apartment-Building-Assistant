@@ -47,4 +47,7 @@ systemctl daemon-reload
 systemctl enable sohei
 systemctl start sohei
 
+# CloudWatch agent, backup and request logger
+bash /opt/sohei/app/ops/setup-ops.sh
+
 echo "$(date -u +%FT%TZ) bootstrap finished"

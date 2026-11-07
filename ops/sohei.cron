@@ -1,0 +1,9 @@
+# Sohei scheduled jobs (installed to /etc/cron.d/sohei). Server time is UTC.
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# Request logger: every 5 minutes
+*/5 * * * * root /usr/bin/python3 /opt/sohei/app/ops/request_log.py >> /var/log/sohei/request_log.err 2>&1
+
+# Automation 1 - backup: every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
+0 */6 * * * root /bin/bash /opt/sohei/app/ops/backup.sh

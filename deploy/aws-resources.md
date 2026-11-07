@@ -60,3 +60,33 @@ Path `/sohei/`. Values are never written down or shown.
 | --- | --- | --- |
 | CloudFront distribution | `sohei-cdn` / `E2UIHSZ4WECRY4` | `arn:aws:cloudfront::411145868626:distribution/E2UIHSZ4WECRY4` |
 | Public link | `https://d3jo5rdo8zr7zb.cloudfront.net` | HTTP redirects to HTTPS. Caching off. Origin is the Elastic IP's DNS name, HTTP port 80 |
+
+## Logging
+
+All log groups keep logs for 14 days.
+
+| Log group | What goes in it |
+| --- | --- |
+| `/sohei/app` | LibreChat logs: streams `<instance>/error`, `/debug`, `/meili` |
+| `/sohei/requests` | One JSON line per answered question (`ops/request_log.py`, every 5 minutes) |
+| `/sohei/ops` | Backup results (`<instance>/backup`) and request logger errors |
+| `/aws/lambda/sohei-healthcheck` | One line per health check |
+
+| Metric filter (on `/sohei/requests`) | Metric |
+| --- | --- |
+| `sohei-response-time` | `Sohei/ResponseTimeSeconds` = `latency_seconds` |
+| `sohei-requests` | `Sohei/Requests` = 1 per line |
+| `sohei-failed-requests` | `Sohei/FailedRequests` = 1 when `success` is false (else 0) |
+
+CloudWatch agent metrics (namespace `CWAgent`, every 60 s): `mem_used_percent`, `disk_used_percent` for `/`.
+
+## Automations
+
+| Resource | Name / ARN | Notes |
+| --- | --- | --- |
+| Backup (cron on server) | `/etc/cron.d/sohei`, `ops/backup.sh` | `0 */6 * * *` UTC. MongoDB dump to `s3://sohei-909927/backups/` |
+| Request logger (cron on server) | `/etc/cron.d/sohei`, `ops/request_log.py` | Every 5 minutes |
+| Lambda | `sohei-healthcheck` / `arn:aws:lambda:ap-southeast-2:411145868626:function:sohei-healthcheck` | Python 3.12. Calls `/api/config`, sends `Sohei/HealthCheckOK` |
+| IAM role | `arn:aws:iam::411145868626:role/sohei-healthcheck-role` | Inline `sohei-healthcheck-access`: own log group + `PutMetricData` for namespace `Sohei` only |
+| Schedule | `sohei-healthcheck-every-15min` / `arn:aws:scheduler:ap-southeast-2:411145868626:schedule/default/sohei-healthcheck-every-15min` | EventBridge Scheduler, `rate(15 minutes)` |
+| IAM role | `arn:aws:iam::411145868626:role/sohei-scheduler-role` | Inline `sohei-invoke-healthcheck`: may only invoke `sohei-healthcheck` |

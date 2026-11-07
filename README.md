@@ -52,6 +52,7 @@ I worked alone on this project.
 | 6 Nov 2026 | Ran LibreChat v0.8.9-rc1 locally in Docker with its original look. Connected Gemini and tested a question. Took screenshot E-05. |
 | 6 Nov 2026 | Reskinned LibreChat as Sohei: theme, logo, footer, building handbook and Gemini model spec. Tested answers and refusals. Took screenshot E-01. |
 | 7 Nov 2026 | Deployed Sohei to AWS: private S3 bucket, secrets in Parameter Store, EC2 role, CloudFront-only security group, EC2 server with Elastic IP, CloudFront HTTPS. Tested the HTTPS link, then closed registration. Took screenshots E-13 and E-02. |
+| 7 Nov 2026 | Logging and automations: CloudWatch agent (memory, disk, app logs), request logger every 5 minutes with 3 metric filters, backup to S3 every 6 hours, health-check Lambda every 15 minutes. Log retention 14 days. Tested each once by hand. |
 
 ## Use of AI tools
 

@@ -1,0 +1,60 @@
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "run_as_user": "root"
+  },
+  "metrics": {
+    "namespace": "CWAgent",
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    },
+    "metrics_collected": {
+      "mem": {
+        "measurement": ["mem_used_percent"]
+      },
+      "disk": {
+        "measurement": ["used_percent"],
+        "resources": ["/"],
+        "drop_device": true
+      }
+    }
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/opt/sohei/LibreChat/logs/error-*.log",
+            "log_group_name": "/sohei/app",
+            "log_stream_name": "{instance_id}/error"
+          },
+          {
+            "file_path": "/opt/sohei/LibreChat/logs/debug-*.log",
+            "log_group_name": "/sohei/app",
+            "log_stream_name": "{instance_id}/debug"
+          },
+          {
+            "file_path": "/opt/sohei/LibreChat/logs/meiliSync-*.log",
+            "log_group_name": "/sohei/app",
+            "log_stream_name": "{instance_id}/meili"
+          },
+          {
+            "file_path": "/var/log/sohei/requests.log",
+            "log_group_name": "/sohei/requests",
+            "log_stream_name": "{instance_id}"
+          },
+          {
+            "file_path": "/var/log/sohei/backup.log",
+            "log_group_name": "/sohei/ops",
+            "log_stream_name": "{instance_id}/backup"
+          },
+          {
+            "file_path": "/var/log/sohei/request_log.err",
+            "log_group_name": "/sohei/ops",
+            "log_stream_name": "{instance_id}/request-logger-errors"
+          }
+        ]
+      }
+    }
+  }
+}
