@@ -1,0 +1,44 @@
+# Sohei – server override for LibreChat's deploy-compose.yml
+# Used by start.sh with: docker compose -f deploy-compose.yml -f <this file> up -d
+# Paths are relative to /opt/sohei/LibreChat (the folder of deploy-compose.yml).
+
+services:
+  api:
+    # Same version as local (interface.theme needs v0.8.9-rc1 or newer).
+    image: registry.librechat.ai/librechat-ai/librechat:v0.8.9-rc1
+    # Sohei does not use the RAG services, so the app only needs MongoDB.
+    depends_on: !override
+      - mongodb
+    # No public port: only nginx talks to the app.
+    ports: !reset []
+    environment:
+      - "CUSTOM_FOOTER=South Heights Apartments · Emergencies: call 000"
+      - RAG_API_URL=
+    volumes:
+      - type: bind
+        source: ../app/config/librechat.yaml
+        target: /app/librechat.yaml
+      # This image writes its logs to /app/logs, not the /app/api/logs that deploy-compose.yml mounts.
+      - ./logs:/app/logs
+      # Branding (replaces LibreChat's logo and icons inside the built app)
+      - ../app/config/branding/sohei-app-icon.svg:/app/client/dist/assets/logo.svg
+      - ../app/config/branding/favicon-16x16.png:/app/client/dist/assets/favicon-16x16.png
+      - ../app/config/branding/favicon-32x32.png:/app/client/dist/assets/favicon-32x32.png
+      - ../app/config/branding/apple-touch-icon-180x180.png:/app/client/dist/assets/apple-touch-icon-180x180.png
+      - ../app/config/branding/icon-192x192.png:/app/client/dist/assets/icon-192x192.png
+      - ../app/config/branding/maskable-icon.png:/app/client/dist/assets/maskable-icon.png
+
+  # nginx: the only public door, HTTP on port 80 (CloudFront adds HTTPS in front).
+  client:
+    depends_on: !override
+      - api
+    ports: !override
+      - 80:80
+
+  # Not used by Sohei. Profiles keep them from starting.
+  admin-panel:
+    profiles: ["unused"]
+  rag_api:
+    profiles: ["unused"]
+  vectordb:
+    profiles: ["unused"]

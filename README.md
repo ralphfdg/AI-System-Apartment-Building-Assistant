@@ -26,17 +26,21 @@ This project is a reskin of **LibreChat**. I did not write LibreChat; I changed 
 
 ## How it runs (summary)
 
-- **Compute:** one Amazon EC2 instance running LibreChat in Docker (region `ap-southeast-2`)
-- **HTTPS:** Amazon CloudFront
-- **Content and backups:** Amazon S3
-- **Secrets:** AWS Systems Manager Parameter Store (no keys in this repository)
+- **Live link:** https://d3jo5rdo8zr7zb.cloudfront.net
+- **Compute:** one Amazon EC2 `t3.medium` (Amazon Linux 2023) running LibreChat in Docker, region `ap-southeast-2`.
+  No SSH: the server is managed with AWS Systems Manager.
+- **HTTPS:** Amazon CloudFront. The server only accepts port 80 from CloudFront, so it cannot be reached directly.
+- **Content and backups:** Amazon S3 (private, versioned, encrypted)
+- **Secrets:** AWS Systems Manager Parameter Store. The server reads them at start-up (no keys in this repository)
 - **Monitoring:** Amazon CloudWatch, alerts by Amazon SNS email
 - **Audit:** AWS CloudTrail
+
+How to deploy and redeploy: [deploy/README.md](deploy/README.md). Everything created in AWS: [deploy/aws-resources.md](deploy/aws-resources.md).
 
 ## Security note
 
 No passwords, API keys or access keys are stored in this repository or its history.
-All secrets live in AWS Parameter Store.
+The server's secrets live in AWS Parameter Store and are never printed or written to git.
 
 ## Work log
 
@@ -47,6 +51,7 @@ I worked alone on this project.
 | 6 Nov 2026 | AWS account set up: root MFA, budget alert, IAM user with MFA, admin role, CLI profile, CloudTrail, tags. Created this repository.
 | 6 Nov 2026 | Ran LibreChat v0.8.9-rc1 locally in Docker with its original look. Connected Gemini and tested a question. Took screenshot E-05. |
 | 6 Nov 2026 | Reskinned LibreChat as Sohei: theme, logo, footer, building handbook and Gemini model spec. Tested answers and refusals. Took screenshot E-01. |
+| 7 Nov 2026 | Deployed Sohei to AWS: private S3 bucket, secrets in Parameter Store, EC2 role, CloudFront-only security group, EC2 server with Elastic IP, CloudFront HTTPS. Tested the HTTPS link, then closed registration. Took screenshots E-13 and E-02. |
 
 ## Use of AI tools
 
