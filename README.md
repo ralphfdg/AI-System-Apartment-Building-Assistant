@@ -53,6 +53,7 @@ I worked alone on this project.
 | 6 Nov 2026 | Reskinned LibreChat as Sohei: theme, logo, footer, building handbook and Gemini model spec. Tested answers and refusals. Took screenshot E-01. |
 | 7 Nov 2026 | Deployed Sohei to AWS: private S3 bucket, secrets in Parameter Store, EC2 role, CloudFront-only security group, EC2 server with Elastic IP, CloudFront HTTPS. Tested the HTTPS link, then closed registration. Took screenshots E-13 and E-02. |
 | 7 Nov 2026 | Logging and automations: CloudWatch agent (memory, disk, app logs), request logger every 5 minutes with 3 metric filters, backup to S3 every 6 hours, health-check Lambda every 15 minutes. Log retention 14 days. Tested each once by hand. |
+| 7 Nov 2026 | Monitoring: SNS email topic, `Sohei` dashboard (6 widgets), 5 CloudWatch alarms. Cost alerts use the existing US$10 AWS Budget because the organization blocks `us-east-1` billing alarms. Real alert test (UTC+8): app stopped 20:40:16, ALARM 20:56:53, restarted 21:18:42, OK 21:26:53. |
 
 ## Use of AI tools
 

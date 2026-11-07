@@ -90,3 +90,22 @@ CloudWatch agent metrics (namespace `CWAgent`, every 60 s): `mem_used_percent`, 
 | IAM role | `arn:aws:iam::411145868626:role/sohei-healthcheck-role` | Inline `sohei-healthcheck-access`: own log group + `PutMetricData` for namespace `Sohei` only |
 | Schedule | `sohei-healthcheck-every-15min` / `arn:aws:scheduler:ap-southeast-2:411145868626:schedule/default/sohei-healthcheck-every-15min` | EventBridge Scheduler, `rate(15 minutes)` |
 | IAM role | `arn:aws:iam::411145868626:role/sohei-scheduler-role` | Inline `sohei-invoke-healthcheck`: may only invoke `sohei-healthcheck` |
+
+## Monitoring
+
+| Resource | Name / ARN | Notes |
+| --- | --- | --- |
+| Dashboard | `Sohei` / `arn:aws:cloudwatch::411145868626:dashboard/Sohei` | 6 widgets, definition in `ops/dashboard.json` |
+| SNS topic | `sohei-alerts` / `arn:aws:sns:ap-southeast-2:411145868626:sohei-alerts` | Email subscription (confirmed) |
+| Alarm | `sohei-cpu-high` | CPUUtilization > 85% for 2 × 5 min |
+| Alarm | `sohei-status-check-failed` | StatusCheckFailed > 0 for 1 min |
+| Alarm | `sohei-disk-high` | disk_used_percent (/) > 85% for 5 min |
+| Alarm | `sohei-memory-high` | mem_used_percent > 90% for 5 min |
+| Alarm | `sohei-health-down` | HealthCheckOK < 1 for 2 × 15 min, missing data = breaching |
+| Budget (existing, Part A) | `My Monthly Cost Budget` | US$10/month. Emails at 85% and 100% actual, 100% forecast. Used instead of a CloudWatch billing alarm |
+
+All alarms email `sohei-alerts` on ALARM and on OK. Definitions in `ops/alarms.sh`.
+
+**Not created:** `sohei-alerts-billing` and `sohei-billing-over-budget` in `us-east-1`. The account is in an AWS Organization
+(payer `268107281296`) whose service control policy denies creating resources in `us-east-1`, and CloudWatch billing alerts
+are controlled by the payer account. The Budget above covers cost alerts instead.
