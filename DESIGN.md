@@ -1,6 +1,6 @@
 ---
 name: Sohei project site
-description: South Heights as a building you walk through; every page is a level, reached by a directory board and a lift.
+description: South Heights as a building you walk through; the navigation is the building, every page is a floor reached by lift, every section is a room.
 colors:
   cream: "#F5F0E6"
   linen: "#EDE6D8"
@@ -13,6 +13,20 @@ colors:
   forest: "#1E3B2F"
   pine: "#2C5242"
   night: "#152820"
+  deep: "#0E1C16"
+  leaf: "#3A644F"
+  mint: "#DDE6D6"
+  lamp: "#E8B65A"
+  lamp-hi: "#F4D594"
+  clay: "#94482D"
+  clay-soft: "#F4E3D8"
+  ochre: "#7A6224"
+  ochre-soft: "#F1E7CF"
+  steel-hi: "#F1F2EF"
+  steel: "#C9CDCA"
+  steel-mid: "#A7ADAA"
+  steel-lo: "#7D8481"
+  steel-dk: "#4E5552"
 typography:
   display:
     fontFamily: "Tinos, Times New Roman, Times, serif"
@@ -106,8 +120,14 @@ components:
   level-band:
     backgroundColor: "{colors.forest}"
     textColor: "{colors.cream}"
-  home-hero:
+  tower:
     backgroundColor: "{colors.night}"
+    textColor: "{colors.stone}"
+    width: "320px"
+  lift-doors:
+    backgroundColor: "{colors.forest}"
+  room-tab-selected:
+    backgroundColor: "{colors.forest}"
     textColor: "{colors.cream}"
   verdict-gap:
     textColor: "{colors.forest}"
@@ -119,20 +139,29 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Lobby Directory"**
+**Creative North Star: "The Building"**
 
-The site is South Heights Apartments itself. Each page is a level (G, 1 to 9, and a 6M mezzanine for the runbook). A visitor finds a level on the directory board, rides the lift, and reads on a Cream page framed by Forest and Night, with Sand lettering that reads like brass. Finished work shows as lit windows and ticked stamps; unfinished work shows as dark windows, dashed boxes and punched-corner plates. State is always visible and never faked.
+The site is South Heights Apartments itself. Each page is a level (G, 1 to 9, and a 6M mezzanine for the runbook). The navigation is the building itself, drawn as a cross-section on the left: floors 9 down to G, the runbook as a half-height mezzanine, a Sage door on the ground floor and the student standing outside on the pavement. Choosing a floor rides the lift: the doors shut over the page, the floors count past, and the doors open on the new floor. Each floor is split into rooms (5.1, 5.2 …), one open at a time, so no page is a long scroll. Reading happens on a Cream page framed by Forest and Night, with Sand lettering that reads like brass. Unfinished work shows as dashed boxes and punched-corner plates. State is always visible and never faked.
 
 It is a calm, document-first world: one serif voice (Tinos, the same Times metric as the Sohei app), a mono voice (Cousine) for anything you could check (IDs, times, commands), 1px lines instead of boxes, 2px corners, no shadows. Bootstrap 5.3.3 is the engine but never shows: every colour, radius and font comes through the CSS variables in `docs/assets/css/site.css`.
 
 **Key Characteristics:**
-- Dark frame (masthead, level bands, directory board, footer), light reading column.
-- Sand is the "brass": level numerals, lit windows, hairlines under dark bands, the current lift button.
+- Dark frame (the building, level bands, footer), light reading column.
+- Sand is the "brass": level numerals, the lit windows of your floor, the ground line, hairlines under dark bands, the lift-door seam.
 - Hairlines and stamps carry structure and state; there are no cards and no shadows.
 - Mono tabular figures for every ID, time and command.
-- Motion only where the building moves: windows light, the board drops, the lift counts.
+- One authored moment: the lift ride between floors. Everything else is quiet (a 0.3s room fade, the person waving).
 
 ## Colors
+
+**Accents and shades (added 8 Nov 2026, "colors too plain").** Each accent has one job:
+- **Lamp** (`#E8B65A`, with Lamp-hi): warm window light. "You are here" in the building, the level numeral, the open room's number, the lift-door floor count, the person on hover. Only on dark surfaces.
+- **Clay** (`#94482D`, with Clay-soft): needs attention. To-do markers, the "Gap" verdict, the alarm segment of the alert timeline, the lobby canopy, the link underline on hover. 5.1:1 on Cream.
+- **Mint** (`#DDE6D6`): soft green surface. Table head rows, the "Good" verdict, hover on room tabs, the "recovered" timeline segment.
+- **Ochre** (`#7A6224` on Ochre-soft): the "Adequate" verdict.
+- **Steel** ramp (Steel-hi to Steel-dk): the lift only. Brushed-steel doors, the car in the shaft, sign posts, the parapet coping.
+- **Deep** and **Leaf**: the night sky behind the building and the footer (Deep); the lit floor row (Leaf).
+
 
 A warm, low-chroma building palette from the Sohei app (`config/librechat.yaml`), deep greens framing a cream page.
 
@@ -187,9 +216,11 @@ A warm, low-chroma building palette from the Sohei app (`config/librechat.yaml`)
 - **One left edge.** Everything sits in a shell of 1040px plus 24px side padding (16px on phones).
 - **Reading column** is 42rem; tables, plates, the timeline, pillars and `.wide` blocks run the full 1040px.
 - **Spacing** uses the scale in the frontmatter. 12px is the row-padding half-step (table cells, list rows, lift buttons); 40px appears for `h3` and plate margins. Sections open with 64px above the `h2`.
-- **Level band:** numeral and title on a two-column grid, 64px top, 48px bottom; one column on phones.
-- **Home hero:** building (5fr) and text (7fr), bottom-aligned so the building stands on the Sand ground line; stacked on screens under 992px, building first.
-- **Breakpoints:** 400, 576, 768, 992, 1360px. Under 768px, tables with headers become label/value rows (labels added by `site.js`). At 1360px and up the lift indicator moves to a fixed column on the left edge with a track of section buttons.
+- **The building:** fixed 320px column on the left from 992px up; floor height `--fh` = clamp(34px, (100dvh − 300px) / 10.6, 60px) so the whole building fits one screen when it can. Under 992px a 56px Night top bar shows the floor and opens the building as a slide-in panel.
+- **Level band:** numeral and title on a two-column grid, 48px top, 32px bottom; one column on phones.
+- **Lobby (G):** intro facts (7fr) beside the video and key facts (5fr); one column under 1200px.
+- **Rooms:** sections become rooms behind a sticky room bar (top 0, or under the top bar on phones); only one room is visible.
+- **Breakpoints:** 400, 576, 768, 992, 1360px. Under 768px, tables with headers become label/value rows (labels added by `site.js`). At 992px and up the building is a fixed column on the left.
 
 ## Elevation & Depth
 
@@ -199,7 +230,7 @@ Flat. There are no shadows anywhere (Bootstrap's focus shadow on the menu toggle
 
 ## Shapes
 
-- Corners are 2px on buttons, code, to-dos and badges; 4px is the Bootstrap large radius. The directory board has square corners.
+- Corners are 2px on buttons, code, to-dos and badges; 4px is the Bootstrap large radius. The building, its floors and the lift doors have square corners.
 - The only round shape is the circle around the arrow in the lift buttons, like a real lift call button.
 - **Stamps:** evidence IDs sit in a mono box with a 1.5px Forest border, tilted -3deg, over the top edge of the plate.
 - **Punched corner:** a missing screenshot is a dashed plate with its top-right corner cut off at 32px, drawn with its own Sand line.
@@ -214,18 +245,19 @@ Flat. There are no shadows anywhere (Bootstrap's focus shadow on the menu toggle
 - **Focus:** 2px Forest outline, 3px offset; Sand on dark surfaces.
 
 ### Navigation
-- **Masthead:** sticky Forest bar, 72px (64px on phones), light logo left, "Directory" and "Live site" right in Cream, Sand on hover.
-- **Directory board (mega menu):** full-width Forest panel with Sand borders top and bottom, unrolls from the top (clip-path, 0.35s). Two columns of levels: mono Sand level number, title, mono Stone E-IDs. The current level is lit: Pine row, number in a Sand button.
-- **Lift indicator:** "Level" plus a mono Sand number. On a page change it counts floor by floor from the last level visited, with a direction arrow while moving. At 1360px+ it is a fixed panel with one small bar per section; the current section bar fills Sand.
+- **The building (`_includes/tower.html`):** Night-to-Deep sky; a rooftop sign (Night board, Sand border, Lamp top edge, on two steel posts) carries the light Sohei logo and links to the lobby; a Pine parapet with steel coping; a Forest facade with a Pine pilaster on the left and 3px Night floor slabs; one row per floor from `_data/levels.yml` (mono Sand number, short name in Stone, three glass windows with a reflection). Your floor is lit: Leaf row, Cream name, number on a Lamp plate, Lamp windows. A lift shaft with two rails runs down the right side; a small brushed-steel car waits at your floor and rides to the next floor during the lift ride. The 6M mezzanine is a half-height, inset row with a dashed line. The ground floor (G, Lobby) is taller, with glass double doors in a steel frame under a Clay canopy; the doors light Lamp on the lobby. A paved strip with a Sand kerb line is the ground. "Live Sohei" and "Source on GitHub" sit under it.
+- **The person outside:** an authored pictogram (head, body, arms, legs) in Stone on the pavement right of the door. Hover, focus or tap: it turns Lamp, raises its right arm (0.45s) and a Cream speech bubble with a Sand border introduces the student (text from `intro` in `_config.yml`) with a link to the Declaration. Escape or a click elsewhere closes a pinned bubble.
+- **Lift doors (the ride):** clicking any link to another floor shuts two brushed-steel doors (Steel ramp, fine vertical grain, a kick plate at the bottom, a dark seam) over the page in 0.42s; a Night header with a steel edge shows a Lamp arrow, the floor number counting floor by floor and the destination's name, while each floor passed lights in the building. Then the page changes; the new page paints with the doors shut (set in `<head>` from `sessionStorage`) and opens them. Skipped with reduced motion, modifier keys, new tabs and same-floor links.
+- **Top bar (under 992px):** Night, 56px, Sand line; logo left; a button with the floor number and short name that opens the building.
 
 ### Level band
-Forest band under the masthead with a huge Sand level numeral, the page title in Cream and a Stone lede; Sand line at the bottom.
+Forest band at the top of each floor with a large Sand level numeral, the page title in Cream and a Stone lede; Sand line at the bottom.
 
-### Lit-window building (home)
-The Sohei mark drawn tall on Night. One window per project part (`_data/progress.yml`): done = Sand, to do = Night with Pine stroke. With motion allowed, windows light in order (140ms apart, 0.6s each). Hovering a window highlights its row in the parts list beside it, and the other way round.
+### Rooms
+`site.js` turns each `h2` section of a floor into a room: a sticky room bar of tabs (mono number like `5.2`, then the section name; selected = Forest fill, Cream text, Sand number), one visible room, and a "Next room" button at the end of each room. Links to any id inside a room (`operations.html#security`, `#e-06`) open that room. Pages with fewer than two sections, and the lobby (`rooms: false`), stay as one page. Print shows every room.
 
 ### Evidence plate
-Linen plate, 1px Sand border, 16px padding, tilted ID stamp, registration corners, caption in 14px Moss starting with the mono E-ID. When the file is missing, the same plate turns dashed with a punched corner and names the exact file to save. Video placeholder uses the same form.
+Linen plate, 1px Sand border, 16px padding, tilted ID stamp, registration corners, caption in 14px Moss starting with the mono E-ID. When the file is missing, the same plate turns dashed with a punched corner and names the exact file to save. The video is a Google Drive file (`video_url` in `_config.yml`, shared "Anyone with the link") shown in the same plate; with no link the plate is a placeholder.
 
 ### To-do marker
 Inline Linen box, 1px dashed Sand border, dashed-box icon in Olive, "To do" in small caps, then the text. Always one line so it fits in table cells.

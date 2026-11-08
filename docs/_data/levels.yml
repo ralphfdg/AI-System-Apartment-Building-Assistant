@@ -1,42 +1,49 @@
-# The building directory: one level per page, in reading order.
-# "level" is what the lift indicator and the directory board show.
+# The building: one floor per page, ground floor first.
+# "level" is the floor number on the building and the lift doors.
+# "short" is the name painted on the floor in the building navigation (keep it short).
+# "mezzanine: true" draws a half-height floor (the runbook hangs off level 6).
 - level: G
-  title: Home
+  title: Lobby
+  short: Lobby
   url: /
-  evidence: Video
 - level: "1"
   title: Infrastructure
+  short: Infrastructure
   url: /infrastructure.html
-  evidence: E-18
 - level: "2"
   title: Sohei & system card
+  short: System card
   url: /system.html
-  evidence: E-01 · E-02 · E-05
 - level: "3"
   title: Baseline
+  short: Baseline
   url: /baseline.html
-  evidence: ""
 - level: "4"
   title: Well-Architected
+  short: Well-Architected
   url: /well-architected.html
-  evidence: E-17
 - level: "5"
   title: Monitoring, backup & security
+  short: Operations
   url: /operations.html
-  evidence: E-06 – E-13
 - level: "6"
   title: Automation & incident
+  short: Automation
   url: /automation-incident.html
-  evidence: E-14 · E-15
+- level: 6M
+  title: "Runbook: disk full"
+  short: Runbook
+  url: /runbook.html
+  mezzanine: true
 - level: "7"
   title: Results
+  short: Results
   url: /results.html
-  evidence: E-03 · E-04 · E-16
 - level: "8"
   title: Next steps
+  short: Next steps
   url: /next.html
-  evidence: ""
 - level: "9"
   title: Declaration
+  short: Declaration
   url: /declaration.html
-  evidence: ""

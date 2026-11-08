@@ -8,8 +8,12 @@ student_name: Ralph De Guzman
 student_id: 23-1140-701
 course: SAM10 Systems Administration and Maintenance
 
-# Paste the YouTube video ID here (the part after watch?v=). Empty = a placeholder box shows.
-video_id: ""
+# The project video on Google Drive. In Drive: Share > General access > "Anyone with the link" (Viewer),
+# then Copy link and paste it here. Empty = a placeholder box shows.
+video_url: ""
+
+# What the person outside the building says when you hover it. Edit freely; plain text only.
+intro: "Hi, I'm Ralph De Guzman (23-1140-701). I built Sohei and run it on AWS by myself, for SAM10 Systems Administration and Maintenance."
 
 live_url: https://d3jo5rdo8zr7zb.cloudfront.net
 repo_url: https://github.com/ralphfdg/AI-System-Apartment-Building-Assistant

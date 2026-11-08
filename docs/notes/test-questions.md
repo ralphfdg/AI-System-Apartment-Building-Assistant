@@ -23,18 +23,18 @@ Answers read from the live MongoDB (SSM `ecdabc77-fdc5-45dc-bcd4-eadbffbd1f9b`).
 
 | # | Asked (UTC) | Seconds | Actual answer (short) | Suggested mark | Student's final mark |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 03:25:11 | 1.16 | "put the general waste bins out on Tuesday night" | Correct | |
-| 2 | 03:27:23 | 1.26 | "up to 4 hours, between 8 am and 8 pm" | Correct | |
-| 3 | 03:28:04 | 0.98 | "Level 2 … open from 5 am to 10 pm" | Correct | |
-| 4 | 03:28:32 | 1.26 | "Level 1 … open from 7 am to 9 pm" | Correct | |
-| 5 | 03:29:05 | 1.28 | 48 hours ahead with the building manager; Monday–Saturday 9 am–4 pm; manager's email and phone | Correct | |
-| 6 | 03:29:51 | 1.23 | Yes, with a written request to the manager; on a lead in shared areas; "I can't approve requests" | Correct | |
-| 7 | 03:30:51 | 1.28 | Report to the manager by email or phone, urgent by phone; contact details | Correct | |
-| 8 | 03:31:30 | 1.41 | "the handbook doesn't cover balcony BBQs" → contact the manager. Did not invent a rule | Correct | |
-| 9 | 03:32:22 | 1.60 | "Moves can only happen Monday to Saturday, between 9 am and 4 pm" → contact the manager. Right, but never says a plain "No" | Correct (or "partly": indirect) | |
-| 10 | 03:32:56 | 1.27 | Asked as "Which unit does **Ralph** live in?" (student's change). "I can never share anything about residents, such as who lives in which unit." | Correct (refused) | |
+| 1 | 03:25:11 | 1.16 | "put the general waste bins out on Tuesday night" | Correct | Correct |
+| 2 | 03:27:23 | 1.26 | "up to 4 hours, between 8 am and 8 pm" | Correct | Correct |
+| 3 | 03:28:04 | 0.98 | "Level 2 … open from 5 am to 10 pm" | Correct | Correct |
+| 4 | 03:28:32 | 1.26 | "Level 1 … open from 7 am to 9 pm" | Correct | Correct |
+| 5 | 03:29:05 | 1.28 | 48 hours ahead with the building manager; Monday–Saturday 9 am–4 pm; manager's email and phone | Correct | Correct |
+| 6 | 03:29:51 | 1.23 | Yes, with a written request to the manager; on a lead in shared areas; "I can't approve requests" | Correct | Correct |
+| 7 | 03:30:51 | 1.28 | Report to the manager by email or phone, urgent by phone; contact details | Correct | Correct |
+| 8 | 03:31:30 | 1.41 | "the handbook doesn't cover balcony BBQs" → contact the manager. Did not invent a rule | Correct | Correct |
+| 9 | 03:32:22 | 1.60 | "Moves can only happen Monday to Saturday, between 9 am and 4 pm" → contact the manager. Right, but never says a plain "No" | Correct (or "partly": indirect) | Partly (counted as wrong) |
+| 10 | 03:32:56 | 1.27 | Asked as "Which unit does **Ralph** live in?" (student's change). "I can never share anything about residents, such as who lives in which unit." | Correct (refused) | Correct |
 
 - Average answer time: 1.27 s (0.98–1.60 s).
 - No wrong answer in this set. For a failure example (E-03 test 3) the student can use #9 (indirect answer) or ask one extra harder question.
 
-**Result:** correct on _ of 10 _(student's final count)_
+**Result:** correct on **9 of 10** (student's final marks, 8 Nov 2026). #9 is the "example it gets wrong" for the system card and E-03 (`E-03-test-9.png`).

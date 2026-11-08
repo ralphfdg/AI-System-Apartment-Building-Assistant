@@ -1,0 +1,63 @@
+{%- comment -%}
+The building is the navigation. A sign on the roof carries the Sohei logo. Floors stack from 9 at the top
+down to the ground floor (G, the lobby); the runbook is a half-height mezzanine (6M). Your floor has its
+windows lit, and the lift car in the shaft on the right waits at your floor. The person outside the door is
+the student: hover, focus or tap them for a short introduction (text in _config.yml, "intro").
+{%- endcomment -%}
+<nav class="tower" id="tower" aria-label="Building: one floor per page">
+  <button class="tower-close" type="button" aria-label="Close the building">{% include icon.html name="close" %}</button>
+
+  <div class="tower-site">
+    <div class="tower-building">
+      <div class="sign">
+        <a class="sign-board" href="{{ '/' | relative_url }}"><img src="{{ '/assets/img/sohei-logo-light.svg' | relative_url }}" width="168" height="42" alt="Sohei, South Heights Apartments – lobby"></a>
+        <span class="sign-legs" aria-hidden="true"></span>
+      </div>
+      <div class="parapet" aria-hidden="true"></div>
+      <div class="facade">
+        <ol class="floors">
+          {%- for l in site.data.levels reversed %}
+          {%- assign is_here = false -%}{%- if l.level == page.level -%}{%- assign is_here = true -%}{%- endif %}
+          <li class="floor{% if l.mezzanine %} is-mezz{% endif %}{% if l.level == 'G' %} is-ground{% endif %}{% if is_here %} is-here{% endif %}" data-level="{{ l.level }}">
+            <a href="{{ l.url | relative_url }}" data-level="{{ l.level }}" data-name="{{ l.short }}"{% if is_here %} aria-current="page"{% endif %}>
+              <span class="f-num">{{ l.level }}</span>
+              <span class="f-name">{{ l.short }}<span class="visually-hidden">{% if l.short != l.title %}: {{ l.title }}{% endif %}{% if is_here %} (you are here){% endif %}</span></span>
+              {%- if l.level == 'G' %}
+              <span class="f-door" aria-hidden="true"></span>
+              {%- else %}
+              <span class="f-win" aria-hidden="true"><i></i><i></i>{% unless l.mezzanine %}<i></i>{% endunless %}</span>
+              {%- endif %}
+            </a>
+          </li>
+          {%- endfor %}
+        </ol>
+        <div class="shaft" aria-hidden="true"><span class="car"></span></div>
+      </div>
+    </div>
+
+    <div class="person-spot">
+      <button class="person" type="button" aria-expanded="false" aria-controls="intro">
+        <svg viewBox="0 0 32 74" width="28" height="64" aria-hidden="true" focusable="false">
+          <circle cx="16" cy="7.5" r="6.5"/>
+          <rect x="8" y="17" width="16" height="25" rx="4"/>
+          <rect class="arm-l" x="2" y="17" width="4.5" height="22" rx="2.25"/>
+          <rect class="arm-r" x="25.5" y="17" width="4.5" height="22" rx="2.25"/>
+          <rect x="8.5" y="41" width="6.5" height="33" rx="2"/>
+          <rect x="17" y="41" width="6.5" height="33" rx="2"/>
+        </svg>
+        <span class="visually-hidden">Who made this site?</span>
+      </button>
+      <div class="intro" id="intro" role="region" aria-label="About the student">
+        {%- capture nw_id %}<span class="nw">{{ site.student_id }}</span>{% endcapture %}
+        <p>{{ site.intro | escape | replace: site.student_id, nw_id }}</p>
+        <a href="{{ '/declaration.html' | relative_url }}">Read my declaration</a>
+      </div>
+    </div>
+  </div>
+  <div class="pavement" aria-hidden="true"></div>
+
+  <ul class="tower-links">
+    <li><a href="{{ site.live_url }}" rel="noopener">Live Sohei {% include icon.html name="external" %}</a></li>
+    <li><a href="{{ site.repo_url }}" rel="noopener">Source on GitHub {% include icon.html name="external" %}</a></li>
+  </ul>
+</nav>

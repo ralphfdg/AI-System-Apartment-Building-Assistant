@@ -1,15 +1,32 @@
-{%- if site.video_id and site.video_id != "" -%}
-<figure class="video">
+{%- comment -%}
+The project video, played from Google Drive. Paste the Drive share link as video_url in _config.yml,
+for example https://drive.google.com/file/d/FILE_ID/view?usp=sharing. The file must be shared with
+"Anyone with the link", or visitors see a sign-in page instead of the video.
+{%- endcomment -%}
+{%- assign video_file = "" -%}
+{%- if site.video_url and site.video_url != "" -%}
+  {%- if site.video_url contains "/d/" -%}
+    {%- assign video_file = site.video_url | split: "/d/" | last | split: "/" | first | split: "?" | first -%}
+  {%- elsif site.video_url contains "id=" -%}
+    {%- assign video_file = site.video_url | split: "id=" | last | split: "&" | first -%}
+  {%- else -%}
+    {%- assign video_file = site.video_url | strip -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if video_file != "" -%}
+<figure class="video plate">
+  <span class="plate-stamp">Video</span>
   <div class="ratio ratio-16x9">
-    <iframe src="https://www.youtube-nocookie.com/embed/{{ site.video_id }}" title="Sohei project video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://drive.google.com/file/d/{{ video_file }}/preview" title="Sohei project video" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
   </div>
+  <figcaption><span class="plate-id">Video</span> The project walk-through. If it does not play here, <a href="https://drive.google.com/file/d/{{ video_file }}/view" rel="noopener">open it on Google Drive</a>.</figcaption>
 </figure>
 {%- else -%}
 <figure class="video plate is-missing">
   <span class="plate-stamp">Video</span>
   <div class="plate-empty">
     <p><b>Video goes here</b></p>
-    <p>Add the YouTube ID as <code>video_id</code> in <code>_config.yml</code></p>
+    <p>Paste the Google Drive share link as <code>video_url</code> in <code>_config.yml</code></p>
   </div>
 </figure>
 {%- endif -%}

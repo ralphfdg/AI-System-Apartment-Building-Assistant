@@ -1,19 +1,64 @@
 {%- comment -%}
 Evidence plate. Usage:
   {% include evidence.html id="E-06" file="E-06-dashboard.png" caption="The Sohei dashboard" %}
-If docs/images/<file> exists, the screenshot shows. If not, a placeholder names the file to save. Pages never need editing.
+Extra screenshots are found by themselves: save E-06-dashboard-2.png, -3.png ... (up to -20) and the plate becomes a carousel.
+Optional:
+  files="a.png,b.png"   use exactly these files, in this order (no automatic -2, -3 ...)
+  captions="One|Two"    a short line for each picture, in the same order
+If no file exists yet, a placeholder names the file to save. Pages never need editing.
 {%- endcomment -%}
-{%- assign evidence_path = "/images/" | append: include.file -%}
-{%- assign evidence_found = site.static_files | where: "path", evidence_path | first -%}
-<figure class="plate{% unless evidence_found %} is-missing{% endunless %}{% if include.half %} plate-half{% endif %}" id="{{ include.id | downcase }}{% if include.n %}-{{ include.n }}{% endif %}">
+{%- assign ev_names = "" | split: "" -%}
+{%- if include.files -%}
+  {%- assign ev_want = include.files | split: "," -%}
+{%- else -%}
+  {%- assign ev_ext = include.file | split: "." | last -%}
+  {%- assign ev_extdot = "." | append: ev_ext -%}
+  {%- assign ev_base = include.file | split: ev_extdot | first -%}
+  {%- assign ev_list = include.file -%}
+  {%- for i in (2..20) -%}
+    {%- assign ev_list = ev_list | append: "," | append: ev_base | append: "-" | append: i | append: ev_extdot -%}
+  {%- endfor -%}
+  {%- assign ev_want = ev_list | split: "," -%}
+{%- endif -%}
+{%- for f in ev_want -%}
+  {%- assign ev_f = f | strip -%}
+  {%- assign ev_path = "/images/" | append: ev_f -%}
+  {%- assign ev_hit = site.static_files | where: "path", ev_path | first -%}
+  {%- if ev_hit -%}{%- assign ev_names = ev_names | push: ev_f -%}{%- endif -%}
+{%- endfor -%}
+{%- assign ev_caps = include.captions | split: "|" -%}
+{%- assign ev_count = ev_names | size -%}
+{%- assign ev_first = ev_want | first | strip -%}
+{%- assign ev_anchor = include.id | downcase | replace: " ", "-" -%}{%- if include.n -%}{%- assign ev_anchor = ev_anchor | append: "-" | append: include.n -%}{%- endif -%}
+<figure class="plate{% if ev_count == 0 %} is-missing{% endif %}{% if ev_count > 1 %} is-carousel{% endif %}{% if include.half %} plate-half{% endif %}" id="{{ ev_anchor }}">
   <span class="plate-stamp">{{ include.id }}</span>
   <span class="reg reg-tl" aria-hidden="true"></span><span class="reg reg-tr" aria-hidden="true"></span><span class="reg reg-bl" aria-hidden="true"></span><span class="reg reg-br" aria-hidden="true"></span>
-  {%- if evidence_found %}
-  <a href="{{ evidence_path | relative_url }}" class="plate-link"><img src="{{ evidence_path | relative_url }}" alt="{{ include.id }}: {{ include.caption }}" loading="lazy"></a>
-  {%- else %}
+  {%- if ev_count == 0 %}
   <div class="plate-empty">
     <p><b>Screenshot needed</b></p>
-    <p>Save it as <code>images/{{ include.file }}</code></p>
+    <p>Save it as <code>images/{{ ev_first }}</code></p>
+  </div>
+  {%- elsif ev_count == 1 %}
+  {%- assign ev_src = "/images/" | append: ev_names[0] | relative_url %}
+  <a href="{{ ev_src }}" class="plate-link"><img src="{{ ev_src }}" alt="{{ include.id }}: {% if ev_caps[0] %}{{ ev_caps[0] }}{% else %}{{ include.caption }}{% endif %}" loading="lazy"></a>
+  {%- if ev_caps[0] %}<p class="slide-cap">{{ ev_caps[0] }}</p>{% endif %}
+  {%- else %}
+  <div class="carousel-view" role="region" aria-roledescription="carousel" aria-label="{{ include.id }}: {{ ev_count }} screenshots" tabindex="0">
+    <ol class="carousel-track">
+      {%- for name in ev_names %}
+      {%- assign ev_src = "/images/" | append: name | relative_url %}
+      <li class="carousel-slide" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ ev_count }}">
+        <a href="{{ ev_src }}" class="plate-link"><img src="{{ ev_src }}" alt="{{ include.id }}, {{ forloop.index }} of {{ ev_count }}: {% if ev_caps[forloop.index0] %}{{ ev_caps[forloop.index0] }}{% else %}{{ include.caption }}{% endif %}" loading="lazy"></a>
+        {%- if ev_caps[forloop.index0] %}<p class="slide-cap"><span class="t">{{ forloop.index }}</span> {{ ev_caps[forloop.index0] }}</p>{% endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+  <div class="carousel-controls">
+    <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous screenshot"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <span class="carousel-count" aria-live="polite"><span class="carousel-now">1</span> / {{ ev_count }}</span>
+    <button type="button" class="carousel-btn" data-dir="1" aria-label="Next screenshot"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <span class="carousel-ticks" aria-hidden="true">{% for name in ev_names %}<i{% if forloop.first %} class="is-on"{% endif %}></i>{% endfor %}</span>
   </div>
   {%- endif %}
   <figcaption><span class="plate-id">{{ include.id }}</span> {{ include.caption }}</figcaption>

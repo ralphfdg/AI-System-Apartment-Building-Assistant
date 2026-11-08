@@ -9,9 +9,10 @@
 # spend and at 100% of forecast spend instead.
 set -euo pipefail
 
-ACCOUNT="411145868626"
 INSTANCE="i-0f42c5b9e0e88a6ee"
 SYD="--profile ai-sys-sam10-admin --region ap-southeast-2"
+# The account number is looked up at run time, so it is not written in this public repo.
+ACCOUNT="$(aws sts get-caller-identity $SYD --query Account --output text)"
 TOPIC="arn:aws:sns:ap-southeast-2:$ACCOUNT:sohei-alerts"
 TAGS="Key=Project,Value=SAM10 Key=Owner,Value=Ethan"
 

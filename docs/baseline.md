@@ -1,7 +1,7 @@
 ---
 title: Baseline
 level: "3"
-description: Where the project started. LibreChat ran on a laptop with its default settings, and nothing watched or protected it.
+description: LibreChat ran on my laptop with its default settings. Nothing watched it and nothing backed it up.
 ---
 
 ## The starting point
@@ -25,11 +25,11 @@ Before any of the work on this site, LibreChat ran in Docker on a laptop, with t
 
 ## The "before" period
 
-To compare before and after fairly, both periods have the same length and are measured the same way.
+To compare before and after fairly, both periods have the same length (14 hours 56 minutes) and are measured the same way. The "before" period starts once monitoring was running on AWS, and ends when the last Day 2 fix (the Docker log limit) was in place. The results are on the [Results]({{ '/results.html' | relative_url }}) page.
 
 | | Start | End |
 | --- | --- | --- |
-| Before | <span class="t">7 Nov 2026, 12:10 UTC</span> | {% include todo.html text="End of the before period" %} |
-| After | {% include todo.html text="Start of the after period" %} | {% include todo.html text="End – same length as before" %} |
+| Before | <span class="t">7 Nov 2026, 12:10 UTC</span> | <span class="t">8 Nov 2026, 03:06 UTC</span> |
+| After | <span class="t">8 Nov 2026, 03:06 UTC</span> | <span class="t">8 Nov 2026, 18:02 UTC</span> |
 
 All times on this site are UTC unless they say UTC+8 (the student's local time).

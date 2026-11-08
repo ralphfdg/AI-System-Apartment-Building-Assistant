@@ -1,7 +1,7 @@
 ---
 title: Infrastructure
 level: "1"
-description: One server in Sydney, reached only through CloudFront, with AWS services around it for secrets, backups, logs and alerts.
+description: One server in Sydney sits behind CloudFront. Around it, AWS services hold the secrets, backups, logs and alerts.
 ---
 
 ## The diagram

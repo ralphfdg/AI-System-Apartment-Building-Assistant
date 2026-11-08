@@ -58,6 +58,10 @@ I worked alone on this project.
 | 8 Nov 2026 | Restore test: marker chat on the live site, backup run by hand, restored onto the laptop with `mongorestore` (82 documents, 0 failed), marker chat found. Restore time 2 min 31 s; RPO up to 6 hours. S3 handbook version restored from an older version ID. Facts in `docs/notes/facts-day2.md`. |
 | 8 Nov 2026 | Disk-full fault on the live server with noisy containers (no Docker log limit). Round 1: CPU alarm 02:16 UTC, safety guard stopped it at 91% before the disk alarm (5-minute average). Round 2: disk held at 87%, `sohei-disk-high` fired 02:58:53 UTC, space back 03:02. Fix: `deploy/daemon.json` (3 × 10 MB logs), installed by `bootstrap.sh`; proven with a 5-minute test (log capped at 23 MB). Evidence in `docs/notes/fault-evidence.md`. |
 | 8 Nov 2026 | Quality and security checks: 10 test questions asked on the live site (suggested 10 of 10 correct, average answer 1.27 s); security controls checked live with read-only commands; gitleaks scan of the full history found no leaks; Well-Architected and cost facts collected. Notes in `docs/notes/`. |
+| 8 Nov 2026 | Website updated with the Day 2 results: incident timeline and fix, runbook and system card on the brief's templates, alarm threshold reasons, security sentences, Well-Architected verdicts and the gap to fix first, quality score (9 of 10), before-period numbers (7 Nov 12:10 – 8 Nov 03:06 UTC) and projected cost. Checked locally in Docker. Still to do: after-period numbers (after 18:02 UTC), hand-in date. |
+| 8 Nov 2026 | Website screenshots: added E-01, E-02, E-05, E-06, E-07, E-08, E-09, E-12, E-13, E-15 and extra views. Evidence plates with more than one screenshot are now carousels (swipe, arrow buttons, keyboard); extra `-2`, `-3` files appear by themselves. E-04 shows all 10 test answers, the Results graph reuses the E-06 dashboard, and the cost shows US$0 billed (credits). |
+| 8 Nov 2026 | Website redesign: the navigation is now the building (floors 9 to G, runbook as a 6M mezzanine, you standing outside the door with a short introduction). Changing floor plays a lift-door ride. Long pages are split into rooms (5.1, 5.2 ...), one open at a time. The ground floor is now the intro; the progress windows were removed. |
+| 8 Nov 2026 | Website look: more colour (lamp amber for "you are here", clay for to-dos and gaps, mint table heads), a rooftop sign with the logo, a lift shaft with a moving car, brushed-steel lift doors, and the video slot switched to a Google Drive link. Rewrote the page intros in plainer words. |
 
 ## Use of AI tools
 
@@ -66,3 +70,7 @@ configuration and scripts. I checked its output by testing each step myself and
 reading the AWS and LibreChat documentation.
 At my request, Claude also drafted the RPO and RTO sentences for the restore test;
 I checked them against the measured facts and edited them.
+Also at my request, Claude drafted the website explanations for Day 2: the alarm threshold reasons,
+the security sentences, the system card, the runbook, the incident write-up and the Well-Architected
+verdicts. I made the decisions myself (test marks, verdict choices, the gap to fix first, the
+before/after periods) and checked the text against the raw facts in `docs/notes/`.

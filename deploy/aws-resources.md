@@ -3,7 +3,7 @@
 Everything created for Sohei. Region `ap-southeast-2` unless noted. No secrets in this file.
 Tags on everything that supports them: `Project=SAM10`, `Owner=Ethan`.
 
-Account: `411145868626`
+Account: `4111••••8626`
 
 ## Storage
 
@@ -33,10 +33,10 @@ Path `/sohei/`. Values are never written down or shown.
 
 | Resource | Name / ARN | Notes |
 | --- | --- | --- |
-| IAM role | `arn:aws:iam::411145868626:role/sohei-ec2-role` | Trusted by EC2 only |
+| IAM role | `arn:aws:iam::4111••••8626:role/sohei-ec2-role` | Trusted by EC2 only |
 | Inline policy | `sohei-ec2-access` | Read `/sohei/*` parameters, list the bucket, read and write its objects |
 | Managed policies | `AmazonSSMManagedInstanceCore`, `CloudWatchAgentServerPolicy` | Run Command and Session Manager, CloudWatch agent |
-| Instance profile | `arn:aws:iam::411145868626:instance-profile/sohei-ec2-role` | Attaches the role to the server |
+| Instance profile | `arn:aws:iam::4111••••8626:instance-profile/sohei-ec2-role` | Attaches the role to the server |
 
 ## Network
 
@@ -58,7 +58,7 @@ Path `/sohei/`. Values are never written down or shown.
 
 | Resource | Name / ID | Notes |
 | --- | --- | --- |
-| CloudFront distribution | `sohei-cdn` / `E2UIHSZ4WECRY4` | `arn:aws:cloudfront::411145868626:distribution/E2UIHSZ4WECRY4` |
+| CloudFront distribution | `sohei-cdn` / `E2UIHSZ4WECRY4` | `arn:aws:cloudfront::4111••••8626:distribution/E2UIHSZ4WECRY4` |
 | Public link | `https://d3jo5rdo8zr7zb.cloudfront.net` | HTTP redirects to HTTPS. Caching off. Origin is the Elastic IP's DNS name, HTTP port 80 |
 
 ## Logging
@@ -86,17 +86,17 @@ CloudWatch agent metrics (namespace `CWAgent`, every 60 s): `mem_used_percent`, 
 | --- | --- | --- |
 | Backup (cron on server) | `/etc/cron.d/sohei`, `ops/backup.sh` | `0 */6 * * *` UTC. MongoDB dump to `s3://sohei-909927/backups/` |
 | Request logger (cron on server) | `/etc/cron.d/sohei`, `ops/request_log.py` | Every 5 minutes |
-| Lambda | `sohei-healthcheck` / `arn:aws:lambda:ap-southeast-2:411145868626:function:sohei-healthcheck` | Python 3.12. Calls `/api/config`, sends `Sohei/HealthCheckOK` |
-| IAM role | `arn:aws:iam::411145868626:role/sohei-healthcheck-role` | Inline `sohei-healthcheck-access`: own log group + `PutMetricData` for namespace `Sohei` only |
-| Schedule | `sohei-healthcheck-every-15min` / `arn:aws:scheduler:ap-southeast-2:411145868626:schedule/default/sohei-healthcheck-every-15min` | EventBridge Scheduler, `rate(15 minutes)` |
-| IAM role | `arn:aws:iam::411145868626:role/sohei-scheduler-role` | Inline `sohei-invoke-healthcheck`: may only invoke `sohei-healthcheck` |
+| Lambda | `sohei-healthcheck` / `arn:aws:lambda:ap-southeast-2:4111••••8626:function:sohei-healthcheck` | Python 3.12. Calls `/api/config`, sends `Sohei/HealthCheckOK` |
+| IAM role | `arn:aws:iam::4111••••8626:role/sohei-healthcheck-role` | Inline `sohei-healthcheck-access`: own log group + `PutMetricData` for namespace `Sohei` only |
+| Schedule | `sohei-healthcheck-every-15min` / `arn:aws:scheduler:ap-southeast-2:4111••••8626:schedule/default/sohei-healthcheck-every-15min` | EventBridge Scheduler, `rate(15 minutes)` |
+| IAM role | `arn:aws:iam::4111••••8626:role/sohei-scheduler-role` | Inline `sohei-invoke-healthcheck`: may only invoke `sohei-healthcheck` |
 
 ## Monitoring
 
 | Resource | Name / ARN | Notes |
 | --- | --- | --- |
-| Dashboard | `Sohei` / `arn:aws:cloudwatch::411145868626:dashboard/Sohei` | 6 widgets, definition in `ops/dashboard.json` |
-| SNS topic | `sohei-alerts` / `arn:aws:sns:ap-southeast-2:411145868626:sohei-alerts` | Email subscription (confirmed) |
+| Dashboard | `Sohei` / `arn:aws:cloudwatch::4111••••8626:dashboard/Sohei` | 6 widgets, definition in `ops/dashboard.json` |
+| SNS topic | `sohei-alerts` / `arn:aws:sns:ap-southeast-2:4111••••8626:sohei-alerts` | Email subscription (confirmed) |
 | Alarm | `sohei-cpu-high` | CPUUtilization > 85% for 2 × 5 min |
 | Alarm | `sohei-status-check-failed` | StatusCheckFailed > 0 for 1 min |
 | Alarm | `sohei-disk-high` | disk_used_percent (/) > 85% for 5 min |

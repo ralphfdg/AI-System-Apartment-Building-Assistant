@@ -222,3 +222,34 @@ The student writes one sentence per control. Account number masked.
 
 - Cost per day for the website: read Cost Explorer again tomorrow for 7 Nov and 8 Nov (both still "Estimated"). Rough AWS price for a `t3.medium` in Sydney is about US$1.30/day (CLAUDE.md estimate, not measured).
 - Reminder (Part D step 7): note the end of the "after" period, same length as the "before" period (before started 7 Nov 2026, 12:10 UTC).
+
+## Before and after periods (decided by the student, 8 Nov 2026)
+
+- **Before:** 7 Nov 2026 12:10 UTC → 8 Nov 2026 03:06 UTC (14 h 56 min). Ends when the last Day 2 fix (Docker log limit) was in place.
+- **After:** 8 Nov 2026 03:06 UTC → 8 Nov 2026 18:02 UTC (same length). Read the after numbers once it ends.
+
+### Before-period numbers (read 8 Nov 05:40 UTC, `aws cloudwatch get-metric-data`, one period of 53,760 s)
+
+| Measure | Value | Source |
+| --- | --- | --- |
+| Health checks passed | 58 of 61 (95.1%) – the 3 failures are the planned alert test on 7 Nov | `Sohei/HealthCheckOK` Sum / SampleCount |
+| Requests answered | 2 (the restore-test marker chat, 8 Nov 01:45–01:46) | `Sohei/Requests` Sum, `/sohei/requests` log |
+| Failed requests | 0 | `Sohei/FailedRequests` Sum |
+| Average response time | 1.58 s (2 answers) | `Sohei/ResponseTimeSeconds` Average |
+| Highest disk use | 90.0% (the planned fault) | `CWAgent disk_used_percent` Maximum |
+| Average CPU | 5.7% | `AWS/EC2 CPUUtilization` Average |
+| Backups | 6: 2 automatic (7 Nov 18:00, 8 Nov 00:00) + 4 by hand for tests (01:47, 02:05, 02:50, 03:05) | `aws s3api list-objects-v2` |
+| Alarms fired | 3, all planned tests: `sohei-health-down` 7 Nov 12:56:53, `sohei-cpu-high` 8 Nov 02:16:18, `sohei-disk-high` 8 Nov 02:58:53 | `describe-alarm-history` |
+
+- The 10 test questions (8 Nov 03:25–03:32) fall in the **after** period.
+
+### Cost (Cost Explorer, `RECORD_TYPE=Usage`, read 8 Nov 05:45 UTC, all "Estimated")
+
+| Day | Usage cost | Notes |
+| --- | --- | --- |
+| 6 Nov | US$0.0028 | Before the server existed |
+| 7 Nov | US$0.6754 | Only 11 server hours counted so far (server launched 08:24 UTC). EC2 US$0.5808 (11 h × US$0.0528), public IPv4 US$0.0630 (12.6 h × US$0.005), EBS US$0.0267, S3 US$0.0049 |
+| 8 Nov | US$0 so far | Not counted yet (Cost Explorer lags up to 24 h) |
+
+- All usage is covered by credits, so the bill is US$0.
+- Projected full day from those rates: 24 × US$0.0528 + 24 × US$0.005 + 20 GB gp3 (US$0.096/GB-month ÷ 30 ≈ US$0.064) ≈ **US$1.45 a day**, plus a few cents for S3 and CloudWatch. Check against the full 8 Nov figure tomorrow.
