@@ -56,6 +56,8 @@ I worked alone on this project.
 | 7 Nov 2026 | Monitoring: SNS email topic, `Sohei` dashboard (6 widgets), 5 CloudWatch alarms. Cost alerts use the existing US$10 AWS Budget because the organization blocks `us-east-1` billing alarms. Real alert test (UTC+8): app stopped 20:40:16, ALARM 20:56:53, restarted 21:18:42, OK 21:26:53. |
 | 7 Nov 2026 | Project website started in `docs/` (Jekyll, Bootstrap 5, "Lobby Directory" design): 11 pages, architecture diagram (E-18), screenshot slots and visible to-dos for Day 2 Parts B–D. Checked locally in Docker. Not published yet. |
 | 8 Nov 2026 | Restore test: marker chat on the live site, backup run by hand, restored onto the laptop with `mongorestore` (82 documents, 0 failed), marker chat found. Restore time 2 min 31 s; RPO up to 6 hours. S3 handbook version restored from an older version ID. Facts in `docs/notes/facts-day2.md`. |
+| 8 Nov 2026 | Disk-full fault on the live server with noisy containers (no Docker log limit). Round 1: CPU alarm 02:16 UTC, safety guard stopped it at 91% before the disk alarm (5-minute average). Round 2: disk held at 87%, `sohei-disk-high` fired 02:58:53 UTC, space back 03:02. Fix: `deploy/daemon.json` (3 × 10 MB logs), installed by `bootstrap.sh`; proven with a 5-minute test (log capped at 23 MB). Evidence in `docs/notes/fault-evidence.md`. |
+| 8 Nov 2026 | Quality and security checks: 10 test questions asked on the live site (suggested 10 of 10 correct, average answer 1.27 s); security controls checked live with read-only commands; gitleaks scan of the full history found no leaks; Well-Architected and cost facts collected. Notes in `docs/notes/`. |
 
 ## Use of AI tools
 

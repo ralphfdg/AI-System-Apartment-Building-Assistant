@@ -41,6 +41,10 @@ fi
 echo "SOHEI_BUCKET=$BUCKET" > /etc/sohei.conf
 aws s3 sync "s3://$BUCKET/app/" /opt/sohei/app/ --only-show-errors
 
+# Docker log size limit: each container keeps at most 3 log files of 10 MB (fix from the disk-full fault, Day 2 Part C)
+install -m 644 /opt/sohei/app/deploy/daemon.json /etc/docker/daemon.json
+systemctl restart docker
+
 # Start Sohei now and at every boot
 cp /opt/sohei/app/deploy/sohei.service /etc/systemd/system/sohei.service
 systemctl daemon-reload
