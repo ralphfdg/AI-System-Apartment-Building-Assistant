@@ -28,14 +28,14 @@ Both periods are **14 hours 56 minutes** long and are measured with the same Clo
 
 | Measure | Before (7 Nov 12:10 – 8 Nov 03:06 UTC) | After (8 Nov 03:06 – 18:02 UTC) |
 | --- | --- | --- |
-| Health checks passed | **58 of 61 (95.1%)**. The 3 failures were the planned alert test | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Questions answered | **2** | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Failed answers | **0** | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Average answer time | **1.58 s** (2 answers) | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Highest disk use | **90%** (the planned fault) | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Average CPU | **5.7%** | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Backups | **6**: 2 automatic + 4 by hand for the tests | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
-| Alarms fired | **3**, all from planned tests | {% include todo.html text="After 18:02 UTC on 8 Nov" %} |
+| Health checks passed | **58 of 61 (95.1%)**. The 3 failures were the planned alert test | **60 of 60 (100%)** |
+| Questions answered | **2** | **10**: the 10 test questions |
+| Failed answers | **0** | **0** |
+| Average answer time | **1.58 s** (2 answers) | **1.27 s** (10 answers) |
+| Highest disk use | **90%** (the planned fault) | **45.5%** |
+| Average CPU | **5.7%** | **1.9%** |
+| Backups | **6**: 2 automatic + 4 by hand for the tests | **3**, all automatic (06:00, 12:00, 18:00 UTC) |
+| Alarms fired | **3**, all from planned tests | **0** |
 {: .wide}
 
 Almost every question in both periods was the student's own test, so the request numbers are small. Sohei has no real residents.

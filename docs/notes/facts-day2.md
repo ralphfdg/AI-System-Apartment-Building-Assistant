@@ -253,3 +253,18 @@ The student writes one sentence per control. Account number masked.
 
 - All usage is covered by credits, so the bill is US$0.
 - Projected full day from those rates: 24 × US$0.0528 + 24 × US$0.005 + 20 GB gp3 (US$0.096/GB-month ÷ 30 ≈ US$0.064) ≈ **US$1.45 a day**, plus a few cents for S3 and CloudWatch. Check against the full 8 Nov figure tomorrow.
+
+### After-period numbers (read 23 Nov 2026, same metrics and statistics)
+
+| Measure | Value | Source |
+| --- | --- | --- |
+| Health checks passed | 60 of 60 (100%) | `Sohei/HealthCheckOK` Sum / SampleCount, 5-min data 03:06–18:02 |
+| Requests answered | 10 (the 10 test questions, 03:25–03:33) | `Sohei/Requests` Sum |
+| Failed requests | 0 | `Sohei/FailedRequests` Sum |
+| Average response time | 1.27 s (12.72 s / 10 answers) | `Sohei/ResponseTimeSeconds` Sum / SampleCount |
+| Highest disk use | 45.5% | `CWAgent disk_used_percent` Maximum |
+| Average CPU | 1.9% | `AWS/EC2 CPUUtilization` Average |
+| Backups | 3, all automatic: 06:00, 12:00, 18:00 UTC | `s3api list-object-versions` (current copies deleted after 7 days) |
+| Alarms fired | 0 | `describe-alarm-history`, no state changes 03:06–18:02 |
+
+- The request and ops logs from 8 Nov are gone (14-day retention); the numbers come from the stored metrics.

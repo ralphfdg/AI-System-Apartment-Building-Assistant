@@ -107,5 +107,5 @@ CloudWatch agent metrics (namespace `CWAgent`, every 60 s): `mem_used_percent`, 
 All alarms email `sohei-alerts` on ALARM and on OK. Definitions in `ops/alarms.sh`.
 
 **Not created:** `sohei-alerts-billing` and `sohei-billing-over-budget` in `us-east-1`. The account is in an AWS Organization
-(payer `268107281296`) whose service control policy denies creating resources in `us-east-1`, and CloudWatch billing alerts
+(payer `2681••••1296`) whose service control policy denies creating resources in `us-east-1`, and CloudWatch billing alerts
 are controlled by the payer account. The Budget above covers cost alerts instead.
