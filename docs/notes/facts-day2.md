@@ -268,3 +268,13 @@ The student writes one sentence per control. Account number masked.
 | Alarms fired | 0 | `describe-alarm-history`, no state changes 03:06–18:02 |
 
 - The request and ops logs from 8 Nov are gone (14-day retention); the numbers come from the stored metrics.
+
+### Cost in November (read 17, 23 and 26 Nov 2026)
+
+| What | Value | Source |
+| --- | --- | --- |
+| Usage per day | US$1.456–1.486 on each full day 12–21 Nov | Cost Explorer `RECORD_TYPE=Usage`, daily, read 23 Nov |
+| Usage 1–22 Nov | US$22.75, credits −US$22.75, billed US$0 | Cost Explorer by `RECORD_TYPE`, read 23 Nov |
+| Biggest part | EC2 compute US$11.69 of US$13.56 (86%), 1–17 Nov | Cost Explorer by service, read 17 Nov |
+| Budget | `My Monthly Cost Budget`, limit US$10, actual US$22.75 on 23 Nov | `aws budgets describe-budget` |
+| Usage 1–25 Nov | US$27.14 month-to-date, before credits | Billing home, screenshot `E-16-cost.png`, 26 Nov 20:38 UTC+8 |

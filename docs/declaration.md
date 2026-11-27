@@ -21,7 +21,7 @@ I confirm that the work submitted for SAM10 – Systems Administration and Maint
   <dt>Student ID</dt><dd>{{ site.student_id }}</dd>
   <dt>Course</dt><dd>{{ site.course }}</dd>
   <dt>Signature</dt><dd>{{ site.student_name }} (typed)</dd>
-  <dt>Date</dt><dd>November 27, 2027</dd>
+  <dt>Date</dt><dd>November 27, 2026</dd>
 </dl>
 
 I worked alone on this project.

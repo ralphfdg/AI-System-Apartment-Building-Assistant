@@ -50,7 +50,7 @@ The AWS Well-Architected Framework is a checklist AWS uses to judge whether a sy
     <dl>
       <dt>AWS asks</dt><dd>Do you pay only for what you need, and do you watch the bill?</dd>
       <dt>Sohei does</dt><dd>One server, a US$10 a month budget with email alerts, backups deleted after 7 days, logs kept for 14 days.</dd>
-      <dt>Weak point</dt><dd>The server runs 24 hours a day for very few users. It costs about US$1.45 a day (projected from the rates charged on 7 Nov 2026), and the server is 86% of that.</dd>
+      <dt>Weak point</dt><dd>The server runs 24 hours a day for very few users. It costs about US$1.46 a day (measured 12–21 Nov 2026), and the server is 86% of that.</dd>
       <dt>Verdict</dt><dd><span class="verdict verdict-ok">Adequate</span> The bill is small and watched by a budget, but the server runs all day and night for very few users.</dd>
     </dl>
   </section>

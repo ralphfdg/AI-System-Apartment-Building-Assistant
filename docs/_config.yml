@@ -10,7 +10,7 @@ course: SAM10 Systems Administration and Maintenance
 
 # The project video on Google Drive. In Drive: Share > General access > "Anyone with the link" (Viewer),
 # then Copy link and paste it here. Empty = a placeholder box shows.
-video_url: ""
+video_url: "https://drive.google.com/file/d/19qjYzVyhx2MRKhpG0XEU3BbW7MHAZYRU/view"
 
 # What the person outside the building says when you hover it. Edit freely; plain text only.
 intro: "Hi, I'm Ralph De Guzman (23-1140-701). I built Sohei and run it on AWS by myself, for SAM10 Systems Administration and Maintenance."

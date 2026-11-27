@@ -73,11 +73,11 @@ Three of the answers, including the weak one:
 | | Per day | Dates |
 | --- | --- | --- |
 | Before (laptop) | US$0 in AWS | Until 7 Nov 2026 |
-| After (AWS), measured so far | US$0.68 for the first 11 server hours counted | 7 Nov 2026 (Cost Explorer, estimated) |
-| After (AWS), projected | About **US$1.45 a day**: 24 hours of the server (US$0.0528 an hour), its public IP address (US$0.005 an hour) and the 20 GB disk | From the rates charged on 7 Nov 2026 |
-| After (AWS), billed | **US$0**: AWS credits cover all usage | 6–8 Nov 2026 (Cost Explorer) |
+| After (AWS), per day | About **US$1.46 a day**, almost all of it the server, its public IP address and its 20 GB disk | 12–21 Nov 2026 (Cost Explorer) |
+| After (AWS), month so far | **US$27.14** of usage, before credits | 1–25 Nov 2026 (Billing home, read 26 Nov) |
+| After (AWS), billed | **US$0**: AWS credits paid for all usage | 1–22 Nov 2026 (Cost Explorer, read 23 Nov) |
 {: .wide}
 
-Cost Explorer shows **US$0** because AWS credits cover all of it. The usage behind it is only visible when the credits are filtered out. Gemini costs nothing on its free tier. The server was 86% of the 7 Nov cost, so switching it off at night, or using a smaller or Arm server, would cut the bill the most.
+The bill is **US$0** because AWS credits pay for the usage. The US$27.14 is the usage before credits. It passed the US$10 monthly Budget in November: the Budget counts usage before credits, so it warns even when the bill is US$0. Gemini costs nothing on its free tier. The server was 86% of the cost (1–17 Nov), so switching it off at night, or using a smaller or Arm server, would cut the bill the most.
 
-{% include evidence.html id="E-16" file="E-16-cost.png" caption="Cost Explorer, before and after." %}
+{% include evidence.html id="E-16" file="E-16-cost.png" caption="Billing home on 26 Nov 2026: US$27.14 of usage from 1 to 25 Nov, before credits." %}

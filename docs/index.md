@@ -42,7 +42,7 @@ description: Residents of South Heights Apartments ask Sohei about bin day, park
   <dt>Who is watching</dt>
   <dd>5 CloudWatch alarms and a US$10 a month AWS Budget, all by email</dd>
   <dt>Cost per day</dt>
-  <dd>About US$1.45 (projected from the rates AWS charged on 7 Nov 2026), covered by credits so far</dd>
+  <dd>About US$1.46 (measured 12–21 Nov 2026), paid by AWS credits</dd>
 </dl>
 
 </aside>
